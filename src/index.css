@@ -14,6 +14,10 @@
 }
 body {
   background-color: rgb(26, 24, 58);
+  min-width: 1220px;
+}
+.pointer {
+  cursor: pointer;
 }
 .component-spacing {
   padding-left: var(--padding-left);
@@ -24,4 +28,10 @@ body {
 input:focus {
   outline: none;
   color: var(--text-color);
+}
+.min16Max18px {
+  font-size: clamp(16px, 4vw, 18px);
+}
+.min20Max24px {
+  font-size: clamp(20px, 4vw, 24px);
 }

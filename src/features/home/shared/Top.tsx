@@ -1,9 +1,8 @@
-import logo from "/assets/school-logo.png";
+//import logo from "/assets/school-logo.png";
 function Top(): React.ReactElement {
   return (
     <header className="w-full h-fit bg-pramary-dark-blue component-spacing flex items-center">
       <section className="text-text-color mr-auto flex gap-1 items-center">
-        <img className="w-10 h-10 rounded-xs" src={logo}></img>
         <h1 className="font-extrabold ">
           GSS KARSHI STUDENTS RECORD & TRACKING
         </h1>

@@ -1,12 +1,18 @@
-import Top from "../../shared/Top";
-import LeftNavigationBar from "../../shared/LeftNavigationBar";
-import StudentsRecord from "../studentsRecord/StudentsRecord";
+import Top from "./shared/Top";
+import LeftNavigationBar from "./shared/LeftNavigationBar";
+import StudentsHiglights from "./components/StudentsHiglights";
+//import StudentsRecord from "./features/studentsRecord/StudentsRecord";
 function Home(): React.ReactElement {
   return (
-    <main className="w-full h-screen max-h-full overflow-hidden">
+    <div className="w-full h-screen max-h-full overflow-hidden">
       <Top />
-      <LeftNavigationBar />
-    </main>
+      <main className="w-full h-full flex">
+        <LeftNavigationBar />
+        <article className="w-full h-full component-spacing">
+          <StudentsHiglights />
+        </article>
+      </main>
+    </div>
   );
 }
 export default Home;
