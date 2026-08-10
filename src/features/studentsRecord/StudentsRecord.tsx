@@ -1,4 +1,9 @@
+import Top from "../../shared/Top";
 function StudentsRecord(): React.ReactElement {
-  return <></>;
+  return (
+    <>
+      <Top />
+    </>
+  );
 }
 export default StudentsRecord;

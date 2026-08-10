@@ -1,1 +1,27 @@
 @import "tailwindcss";
+@theme {
+  --color-pramary-dark-blue: #08081f;
+  --color-text-color: #ebe6e6;
+  --color-body-color: rgb(26, 24, 58);
+}
+:root {
+  --padding-left: 12px;
+  --padding-top: 12px;
+  --padding-right: 12px;
+  --padding-bottom: 12px;
+  --text-color: #ebe6e6;
+  --body-color: rgb(26, 24, 58);
+}
+body {
+  background-color: rgb(26, 24, 58);
+}
+.component-spacing {
+  padding-left: var(--padding-left);
+  padding-right: var(--padding-right);
+  padding-bottom: var(--padding-bottom);
+  padding-top: var(--padding-top);
+}
+input:focus {
+  outline: none;
+  color: var(--text-color);
+}
