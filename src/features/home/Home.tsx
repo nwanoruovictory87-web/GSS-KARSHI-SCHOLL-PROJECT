@@ -4,7 +4,7 @@ import Overview from "./features/overview/Overview";
 //import StudentsRecord from "./features/studentsRecord/StudentsRecord";
 function Home(): React.ReactElement {
   return (
-    <div className="w-full h-screen max-h-full overflow-hidden">
+    <div className="w-full h-screen max-h-screen overflow-hidden">
       <Top />
       <main className="w-full h-full flex">
         <LeftNavigationBar />
