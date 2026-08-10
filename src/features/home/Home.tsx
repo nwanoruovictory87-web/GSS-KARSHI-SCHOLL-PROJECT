@@ -1,6 +1,6 @@
 import Top from "./shared/Top";
 import LeftNavigationBar from "./shared/LeftNavigationBar";
-import StudentsHiglights from "./components/StudentsHiglights";
+import Overview from "./features/overview/Overview";
 //import StudentsRecord from "./features/studentsRecord/StudentsRecord";
 function Home(): React.ReactElement {
   return (
@@ -9,7 +9,7 @@ function Home(): React.ReactElement {
       <main className="w-full h-full flex">
         <LeftNavigationBar />
         <article className="w-full h-full component-spacing">
-          <StudentsHiglights />
+          <Overview />
         </article>
       </main>
     </div>

@@ -1,3 +1,4 @@
+import logo from "/assets/school-logo.png";
 function LeftNavigationBar(): React.ReactElement {
   return (
     <nav className="w-[30%] max-w-60 h-full bg-pramary-dark-blue flex flex-col component-spacing gap-7">
@@ -25,6 +26,12 @@ function LeftNavigationBar(): React.ReactElement {
         <i className="fa fa-gears"></i>
         <h5 className="text-[20px]">Dev Mode</h5>
       </section>
+      {/** */}
+      <div className="w-full h-40 flex justify-center  mt-auto mb-20">
+        <span className="w-30 h-30 ">
+          <img className="w-full h-full rounded-2xl" src={logo}></img>
+        </span>
+      </div>
     </nav>
   );
 }
