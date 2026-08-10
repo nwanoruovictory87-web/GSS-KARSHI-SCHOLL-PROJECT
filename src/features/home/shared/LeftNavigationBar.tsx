@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import logo from "/assets/school-logo.png";
 function LeftNavigationBar(): React.ReactElement {
   const [searchParams, setSearchParams] = useSearchParams();
-  const sections = searchParams.get("section");
+  const sections: string | null = searchParams.get("section");
   const overviewRef = useRef<HTMLDivElement | null>(null);
   const alertRef = useRef<HTMLDivElement | null>(null);
   const studentsRef = useRef<HTMLDivElement | null>(null);
