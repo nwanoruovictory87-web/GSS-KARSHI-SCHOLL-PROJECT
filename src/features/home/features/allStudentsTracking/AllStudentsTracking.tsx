@@ -14,6 +14,9 @@ function AllStudentsTracking(): React.ReactElement {
           {/* Our custom layer handles both tile rendering and offline storage */}
           <Marker position={[51.505, -0.2]}></Marker>
           <Marker position={[51.505, -0.21]}></Marker>
+          <Marker position={[51.505, -0.22]}></Marker>
+          <Marker position={[51.505, -0.29]}></Marker>
+          <Marker position={[51.505, -0.28]}></Marker>
           <Marker position={[51.505, -0.002]}></Marker>
         </MapContainer>
       </div>
