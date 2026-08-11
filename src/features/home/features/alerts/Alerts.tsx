@@ -10,7 +10,7 @@ function Alerts(): React.ReactElement {
             <h5>Full Name</h5>
           </span>
           <span className="flex justify-center items-center font-medium border-r border-r-pramary-dark-blue">
-            <h5>Tracking Number</h5>
+            <h5>Tracking ID</h5>
           </span>
           <span className="flex justify-center items-center font-medium border-r border-r-pramary-dark-blue">
             <h5>State</h5>

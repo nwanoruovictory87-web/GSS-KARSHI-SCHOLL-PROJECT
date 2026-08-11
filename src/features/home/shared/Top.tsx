@@ -35,7 +35,7 @@ function Top(): React.ReactElement {
         <search className="w-60 bg-body-color h-8 mr-auto rounded-xs flex items-center gap-1.5 pl-1">
           <i className="fa fa-search text-gray-200 text-xl"></i>
           <input
-            className="w-full h-full pl-1 placeholder:text-gray-400"
+            className="w-full h-full pl-1 placeholder:text-gray-400 text-text-color"
             placeholder="Search..."
           ></input>
         </search>

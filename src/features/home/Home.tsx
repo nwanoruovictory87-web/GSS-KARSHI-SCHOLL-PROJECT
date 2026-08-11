@@ -106,9 +106,9 @@ function Home(): React.ReactElement {
     }
   }, [sections]);
   return (
-    <div className="w-full h-screen max-h-screen overflow-hidden">
+    <div className="w-full h-screen max-h-screen overflow-hidden relative">
       <Top />
-      <main className="w-full h-full flex">
+      <main className="w-full h-full max-h-full flex">
         <LeftNavigationBar />
         <article className="w-full h-full component-spacing">
           <Suspense
