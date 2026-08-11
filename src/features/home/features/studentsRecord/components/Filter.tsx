@@ -18,7 +18,7 @@ function Filter(): React.ReactElement {
           <i className="fa fa-angle-down pointer"></i>
         </span>
       </section>
-      <section className="pointer ml-auto w-28 h-12 rounded-xl flex gap-3 justify-center items-center font-semibold  bg-text-color text-pramary-dark-blue pl-2 pr-2">
+      <section className="pointer ml-auto w-30 h-12  rounded-xl flex gap-3 justify-center items-center font-semibold  bg-text-color text-pramary-dark-blue pl-2 pr-2">
         <i className="fa fa-plus min20Max24px -mr-1"></i>
         <h5>Add</h5>
       </section>
