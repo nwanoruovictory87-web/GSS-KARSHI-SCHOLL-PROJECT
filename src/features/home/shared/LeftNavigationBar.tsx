@@ -142,7 +142,7 @@ function LeftNavigationBar(): React.ReactElement {
     });
   }
   return (
-    <nav className="w-[30%] max-w-60 h-full bg-pramary-dark-blue flex flex-col component-spacing gap-7">
+    <nav className="min-w-47.25 w-[30%] max-w-60 h-full bg-pramary-dark-blue flex flex-col component-spacing gap-7">
       <section
         className="pointer flex items-center  gap-2 text-gray-400 font-medium text-[24px] mt-10 pl-4"
         onClick={toOverviewPage}

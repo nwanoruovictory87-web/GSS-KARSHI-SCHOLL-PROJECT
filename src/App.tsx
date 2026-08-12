@@ -1,7 +1,11 @@
 import Routes from "./routes/Routes";
-
+import { SocketProvider } from "./storage/Socket";
 function App() {
-  return <Routes />;
+  return (
+    <SocketProvider>
+      <Routes />
+    </SocketProvider>
+  );
 }
 
 export default App;
