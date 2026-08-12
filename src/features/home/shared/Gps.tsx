@@ -3,7 +3,7 @@ interface GpsPosition {
   longitude: number;
   accuracy: number;
 }
-export function GetGpsLocation() {
+export function GetGpsLocation(): Promise<GpsPosition> {
   return new Promise((resolve, reject) => {
     // 1. Check if the browser supports the Geolocation API
     if ("geolocation" in navigator) {
