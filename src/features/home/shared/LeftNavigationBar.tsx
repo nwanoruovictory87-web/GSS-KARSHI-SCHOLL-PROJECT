@@ -7,7 +7,6 @@ function LeftNavigationBar(): React.ReactElement {
   const overviewRef = useRef<HTMLDivElement | null>(null);
   const alertRef = useRef<HTMLDivElement | null>(null);
   const studentsRef = useRef<HTMLDivElement | null>(null);
-  const reportsRef = useRef<HTMLDivElement | null>(null);
   const trackingRef = useRef<HTMLDivElement | null>(null);
   const allTrackingRef = useRef<HTMLDivElement | null>(null);
   const devModeRef = useRef<HTMLDivElement | null>(null);
@@ -30,7 +29,6 @@ function LeftNavigationBar(): React.ReactElement {
       !overviewRef.current ||
       !alertRef.current ||
       !studentsRef.current ||
-      !reportsRef.current ||
       !trackingRef.current ||
       !allTrackingRef.current ||
       !devModeRef.current
@@ -41,7 +39,6 @@ function LeftNavigationBar(): React.ReactElement {
         removeButtonActive(devModeRef);
         removeButtonActive(allTrackingRef);
         removeButtonActive(trackingRef);
-        removeButtonActive(reportsRef);
         removeButtonActive(studentsRef);
         removeButtonActive(alertRef);
         //
@@ -52,7 +49,6 @@ function LeftNavigationBar(): React.ReactElement {
         removeButtonActive(devModeRef);
         removeButtonActive(allTrackingRef);
         removeButtonActive(trackingRef);
-        removeButtonActive(reportsRef);
         removeButtonActive(studentsRef);
         removeButtonActive(overviewRef);
         //
@@ -63,28 +59,15 @@ function LeftNavigationBar(): React.ReactElement {
         removeButtonActive(devModeRef);
         removeButtonActive(allTrackingRef);
         removeButtonActive(trackingRef);
-        removeButtonActive(reportsRef);
         removeButtonActive(alertRef);
         removeButtonActive(overviewRef);
         //
         removeButtonActive(studentsRef);
         setButtonActive(studentsRef);
         break;
-      case "students/feedback/reports":
-        removeButtonActive(devModeRef);
-        removeButtonActive(allTrackingRef);
-        removeButtonActive(trackingRef);
-        removeButtonActive(studentsRef);
-        removeButtonActive(alertRef);
-        removeButtonActive(overviewRef);
-        //
-        removeButtonActive(reportsRef);
-        setButtonActive(reportsRef);
-        break;
       case "students/tracking":
         removeButtonActive(devModeRef);
         removeButtonActive(allTrackingRef);
-        removeButtonActive(reportsRef);
         removeButtonActive(studentsRef);
         removeButtonActive(alertRef);
         removeButtonActive(overviewRef);
@@ -95,7 +78,6 @@ function LeftNavigationBar(): React.ReactElement {
       case "all/students/tracking":
         removeButtonActive(devModeRef);
         removeButtonActive(trackingRef);
-        removeButtonActive(reportsRef);
         removeButtonActive(studentsRef);
         removeButtonActive(alertRef);
         removeButtonActive(overviewRef);
@@ -106,7 +88,6 @@ function LeftNavigationBar(): React.ReactElement {
       case "developement/mode":
         removeButtonActive(allTrackingRef);
         removeButtonActive(trackingRef);
-        removeButtonActive(reportsRef);
         removeButtonActive(studentsRef);
         removeButtonActive(alertRef);
         removeButtonActive(overviewRef);
@@ -135,13 +116,6 @@ function LeftNavigationBar(): React.ReactElement {
   //
   function toStudentsPage(): void {
     const page = "students/info";
-    setSearchParams({
-      section: `${page}`,
-    });
-  }
-  //
-  function toReportsPage(): void {
-    const page = "students/feedback/reports";
     setSearchParams({
       section: `${page}`,
     });
@@ -192,14 +166,6 @@ function LeftNavigationBar(): React.ReactElement {
       >
         <i className="fa fa-users"></i>
         <h5 className="text-[20px]">Students</h5>
-      </section>
-      <section
-        className="pointer flex items-center  gap-2 text-text-color font-medium text-[24px]  pl-4"
-        onClick={toReportsPage}
-        ref={reportsRef}
-      >
-        <i className="fa fa-list"></i>
-        <h5 className="text-[20px]">Reports</h5>
       </section>
       <section
         className="pointer flex items-center  gap-2 text-text-color font-medium text-[24px]  pl-4"

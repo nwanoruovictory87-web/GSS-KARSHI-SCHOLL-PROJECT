@@ -9,9 +9,6 @@ const Alerts = lazy(() => import("./features/alerts/Alerts"));
 const StudentsRecord = lazy(
   () => import("./features/studentsRecord/StudentsRecord"),
 );
-const StudentsReports = lazy(
-  () => import("./features/studentsReports/StudentsReports"),
-);
 const StudentsTracking = lazy(
   () => import("./features/studentsTracking/StudentsTracking"),
 );
@@ -25,7 +22,6 @@ function Home(): React.ReactElement {
   const [renderOverview, setRenderOverview] = useState<boolean>(true);
   const [renderAlerts, setRenderAlerts] = useState<boolean>(false);
   const [renderStudents, setRenderStudents] = useState<boolean>(false);
-  const [renderReports, setRenderReports] = useState<boolean>(false);
   const [renderTracking, setRenderTracking] = useState<boolean>(false);
   const [renderAllTracking, setRenderAllTracking] = useState<boolean>(false);
   const [renderDevMode, setRenderDevMode] = useState<boolean>(false);
@@ -35,7 +31,6 @@ function Home(): React.ReactElement {
         setRenderDevMode(false);
         setRenderAllTracking(false);
         setRenderTracking(false);
-        setRenderReports(false);
         setRenderStudents(false);
         setRenderAlerts(false);
         //
@@ -45,7 +40,6 @@ function Home(): React.ReactElement {
         setRenderDevMode(false);
         setRenderAllTracking(false);
         setRenderTracking(false);
-        setRenderReports(false);
         setRenderStudents(false);
         setRenderOverview(false);
         //
@@ -55,26 +49,14 @@ function Home(): React.ReactElement {
         setRenderDevMode(false);
         setRenderAllTracking(false);
         setRenderTracking(false);
-        setRenderReports(false);
         setRenderAlerts(false);
         setRenderOverview(false);
         //
         setRenderStudents(true);
         break;
-      case "students/feedback/reports":
-        setRenderDevMode(false);
-        setRenderAllTracking(false);
-        setRenderTracking(false);
-        setRenderStudents(false);
-        setRenderAlerts(false);
-        setRenderOverview(false);
-        //
-        setRenderReports(true);
-        break;
       case "students/tracking":
         setRenderDevMode(false);
         setRenderAllTracking(false);
-        setRenderReports(false);
         setRenderStudents(false);
         setRenderAlerts(false);
         setRenderOverview(false);
@@ -84,7 +66,6 @@ function Home(): React.ReactElement {
       case "all/students/tracking":
         setRenderDevMode(false);
         setRenderTracking(false);
-        setRenderReports(false);
         setRenderStudents(false);
         setRenderAlerts(false);
         setRenderOverview(false);
@@ -94,7 +75,6 @@ function Home(): React.ReactElement {
       case "developement/mode":
         setRenderAlerts(false);
         setRenderTracking(false);
-        setRenderReports(false);
         setRenderStudents(false);
         setRenderAlerts(false);
         setRenderOverview(false);
@@ -121,7 +101,6 @@ function Home(): React.ReactElement {
             {renderOverview && <Overview />}
             {renderAlerts && <Alerts />}
             {renderStudents && <StudentsRecord />}
-            {renderReports && <StudentsReports />}
             {renderTracking && <StudentsTracking />}
             {renderAllTracking && <AllStudentsTracking />}
             {renderDevMode && <DevMode />}
