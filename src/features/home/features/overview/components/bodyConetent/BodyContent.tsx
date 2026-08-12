@@ -10,7 +10,7 @@ function BodyContent() {
             Student Daily Graph
           </h5>
         </span>
-        <section className="w-full h-full mt-2 pl-2 pr-2 text-text-color">
+        <section className="w-full h-full relative p-2 text-text-color">
           <StudentsLineGraph />
         </section>
       </article>
