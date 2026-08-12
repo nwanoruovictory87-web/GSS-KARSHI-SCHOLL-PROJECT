@@ -13,7 +13,7 @@ function StudentsAlertInfo(): React.ReactElement {
         </h5>
       </span>
       <span className="flex pl-2  items-center font-medium border-r border-body-color">
-        <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#06b106]">
+        <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#0da70dd3]">
           <i className="fa fa-check"></i>
           <h5 className=" font-medium min16Max18px line-clamp-1">stable</h5>
         </span>

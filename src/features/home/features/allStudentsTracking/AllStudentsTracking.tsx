@@ -1,23 +1,30 @@
-import { MapContainer, Marker } from "react-leaflet";
-import OfflineTileLayer from "./OfflineTileLayer";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+//import OfflineTileLayer from "./OfflineTileLayer";
 import "leaflet/dist/leaflet.css";
 function AllStudentsTracking(): React.ReactElement {
   return (
     <div className="component-spacing w-full h-full  relative">
       <div className="w-full h-full pb-12">
         <MapContainer
-          center={[51.505, -0.2]}
+          center={[8.81643, 7.55605]}
           zoom={13}
-          style={{ height: "100%", width: "100%" }}
+          scrollWheelZoom={false}
+          style={{ width: "100%", height: "100%" }}
         >
-          <OfflineTileLayer />
-          {/* Our custom layer handles both tile rendering and offline storage */}
-          <Marker position={[51.505, -0.2]}></Marker>
-          <Marker position={[51.505, -0.21]}></Marker>
-          <Marker position={[51.505, -0.22]}></Marker>
-          <Marker position={[51.505, -0.29]}></Marker>
-          <Marker position={[51.505, -0.28]}></Marker>
-          <Marker position={[51.505, -0.002]}></Marker>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={[8.81643, 7.55605]}>
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+          <Marker position={[8.9887, 7.5601]}>
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
         </MapContainer>
       </div>
     </div>

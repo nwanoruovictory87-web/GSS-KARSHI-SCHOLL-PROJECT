@@ -19,7 +19,7 @@ function List() {
             </h5>
           </span>
           <span className="flex pl-2  items-center font-medium border-r border-body-color">
-            <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[orange]">
+            <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#ffa600e5]">
               <i className="fa fa-triangle-exclamation"></i>
               <h5 className=" font-medium min16Max18px line-clamp-1">
                 warning
@@ -63,7 +63,7 @@ function List() {
             </h5>
           </span>
           <span className="flex pl-2  items-center font-medium border-r border-body-color">
-            <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#ee2424]">
+            <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#ff0000d2]">
               <i className="fa fa-xmark"></i>
               <h5 className=" font-medium min16Max18px line-clamp-1">panic</h5>
             </span>

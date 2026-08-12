@@ -14,7 +14,7 @@
 }
 body {
   background-color: rgb(26, 24, 58);
-  min-width: 1220px;
+  min-width: 1300px;
 }
 .pointer {
   cursor: pointer;
@@ -31,6 +31,12 @@ input:focus {
 }
 .min16Max18px {
   font-size: clamp(16px, 4vw, 18px);
+}
+.min18Max22px {
+  font-size: clamp(18px, 4vw, 22px);
+}
+.min14Max17px {
+  font-size: clamp(14px, 4vw, 17px);
 }
 .min20Max24px {
   font-size: clamp(20px, 4vw, 24px);

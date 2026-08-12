@@ -1,10 +1,22 @@
+import StudentsLineGraph from "./components/StudentsLineGraph";
+import AlertsCounts from "./components/AlertsCounts";
+import ImportantAlerts from "./components/ImportantAlerts";
 function BodyContent() {
   return (
     <div className="w-full h-full flex mb-15 ">
-      <article className="w-[60%] h-full bg-pramary-dark-blue rounded-xl mr-auto"></article>
+      <article className="w-[60%] h-full flex flex-col bg-pramary-dark-blue rounded-xl mr-auto border border-text-color ">
+        <span className="w-full h-7 bg-text-color  rounded-t-xl flex justify-center">
+          <h5 className="min16Max18px text-black font-medium">
+            Student Daily Graph
+          </h5>
+        </span>
+        <section className="w-full h-full mt-2 pl-2 pr-2 text-text-color">
+          <StudentsLineGraph />
+        </section>
+      </article>
       <article className="w-[38%] h-full flex flex-col  ml-auto">
-        <section className="w-full h-[48%] bg-pramary-dark-blue rounded-xl mb-auto"></section>
-        <section className="w-full h-[48%] bg-pramary-dark-blue rounded-xl mt-auto"></section>
+        <AlertsCounts />
+        <ImportantAlerts />
       </article>
     </div>
   );
