@@ -14,7 +14,6 @@
 }
 body {
   background-color: rgb(26, 24, 58);
-  min-width: 1300px;
 }
 .pointer {
   cursor: pointer;
@@ -28,9 +27,6 @@ body {
 input:focus {
   outline: none;
   color: var(--text-color);
-}
-.test {
-  background-color: rgb(223, 62, 62);
 }
 .min16Max18px {
   font-size: clamp(16px, 4vw, 18px);

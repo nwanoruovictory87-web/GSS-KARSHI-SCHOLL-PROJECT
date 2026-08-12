@@ -65,7 +65,7 @@ function StudentsLineGraph(): React.ReactElement {
   const options = {};
   return (
     <Bar
-      style={{ minWidth: "100%", minHeight: "100%" }}
+      style={{ width: "100%", height: "100%" }}
       options={options}
       data={studentsData}
     />
