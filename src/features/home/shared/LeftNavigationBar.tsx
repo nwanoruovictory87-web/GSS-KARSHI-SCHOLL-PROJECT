@@ -15,13 +15,17 @@ function LeftNavigationBar(): React.ReactElement {
     ref: React.RefObject<HTMLDivElement | null>,
   ): void {
     if (!ref.current) return;
-    ref.current.classList.remove("text-gray-400");
-    ref.current.classList.add("text-text-color");
+    ref.current.classList.remove("text-gray-100");
+    ref.current.classList.remove("bg-[#7c7cf8e5]");
+    ref.current.classList.add("bg-transparent");
+    ref.current.classList.add("text-gray-400");
   }
   function setButtonActive(ref: React.RefObject<HTMLDivElement | null>): void {
     if (!ref.current) return;
-    ref.current.classList.remove("text-text-color");
-    ref.current.classList.add("text-gray-400");
+    ref.current.classList.remove("text-gray-400");
+    ref.current.classList.remove("bg-transparent");
+    ref.current.classList.add("bg-[#7c7cf8e5]");
+    ref.current.classList.add("text-gray-100");
   }
   //
   useEffect(() => {
@@ -142,9 +146,9 @@ function LeftNavigationBar(): React.ReactElement {
     });
   }
   return (
-    <nav className="min-w-47.25 w-[30%] max-w-60 h-full bg-pramary-dark-blue flex flex-col component-spacing gap-7">
+    <nav className="min-w-47.25 w-[30%] max-w-60 h-full bg-pramary-dark-blue flex flex-col component-spacing gap-5">
       <section
-        className="pointer flex items-center  gap-2 text-gray-400 font-medium text-[24px] mt-10 pl-4"
+        className="pointer flex items-center  bg-[#7c7cf8e5] rounded-lg p-2 gap-2 transition-all  text-gray-100 font-medium text-[24px] mt-10 pl-4"
         onClick={toOverviewPage}
         ref={overviewRef}
       >
@@ -152,7 +156,7 @@ function LeftNavigationBar(): React.ReactElement {
         <h5 className="text-[20px] ">Overview</h5>
       </section>
       <section
-        className="pointer flex items-center  gap-2 text-text-color font-medium text-[24px]  pl-4"
+        className="pointer flex items-center  gap-2 transition-all bg-transparent rounded-lg p-2 text-gray-400 font-medium text-[24px]  pl-4"
         onClick={toAlertPage}
         ref={alertRef}
       >
@@ -160,7 +164,7 @@ function LeftNavigationBar(): React.ReactElement {
         <h5 className="text-[20px]">Alerts</h5>
       </section>
       <section
-        className="pointer flex items-center  gap-2 text-text-color font-medium text-[24px]  pl-4"
+        className="pointer flex items-center  gap-2 transition-all bg-transparent rounded-lg p-2 text-gray-400 font-medium text-[24px]  pl-4"
         onClick={toStudentsPage}
         ref={studentsRef}
       >
@@ -168,7 +172,7 @@ function LeftNavigationBar(): React.ReactElement {
         <h5 className="text-[20px]">Students</h5>
       </section>
       <section
-        className="pointer flex items-center  gap-2 text-text-color font-medium text-[24px]  pl-4"
+        className="pointer flex items-center  gap-2 transition-all bg-transparent rounded-lg p-2 text-gray-400 font-medium text-[24px]  pl-4"
         onClick={toTrackingPage}
         ref={trackingRef}
       >
@@ -176,7 +180,7 @@ function LeftNavigationBar(): React.ReactElement {
         <h5 className="text-[20px]">Tracking</h5>
       </section>
       <section
-        className="pointer flex items-center  gap-2 text-text-color font-medium text-[24px]  pl-4"
+        className="pointer flex items-center  gap-2 transition-all bg-transparent rounded-lg p-2 text-gray-400 font-medium text-[24px]  pl-4"
         onClick={toAllTrackingPage}
         ref={allTrackingRef}
       >
@@ -184,7 +188,7 @@ function LeftNavigationBar(): React.ReactElement {
         <h5 className="text-[20px]">All Tracking</h5>
       </section>
       <section
-        className="pointer flex items-center  gap-2 text-text-color font-medium text-[24px]  pl-4"
+        className="pointer flex items-center  gap-2 transition-all bg-transparent rounded-lg p-2 text-gray-400 font-medium text-[24px]  pl-4"
         onClick={toDevPage}
         ref={devModeRef}
       >

@@ -1,9 +1,11 @@
 function AlertsCounts(): React.ReactElement {
   return (
-    <section className="w-full h-[38%] flex flex-col overflow-hidden font-sans bg-pramary-dark-blue rounded-xl mb-auto border border-text-color">
-      <span className="w-full  h-7 bg-text-color  rounded-t-xl flex justify-center">
-        <h5 className="min16Max18px text-black font-medium">Alerts Counts</h5>
-      </span>
+    <section className="w-full h-[38%] flex flex-col overflow-hidden font-sans bg-pramary-dark-blue rounded-xl mb-auto ">
+      <div className="w-full pl-px pr-px">
+        <span className="w-full  h-7 bg-text-color  rounded-t-xl flex justify-center">
+          <h5 className="min16Max18px text-black font-medium">Alerts Counts</h5>
+        </span>
+      </div>
       <div className="w-full h-full flex flex-col gap-3 mt-3   text-text-color font-medium">
         <span className="grid grid-cols-[70%_30%] border border-body-color pl-2 pr-2 gap-2 ">
           <h5 className="min18Max22px font-medium border-r border-body-color line-clamp-1">

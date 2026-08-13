@@ -10,7 +10,7 @@ export function GetGpsLocation(): Promise<GpsPosition> {
       // Configuration options for high-accuracy live tracking
       const options = {
         enableHighAccuracy: true, // Forces the device to use GPS instead of Wi-Fi/IP routing
-        timeout: 5000, // Maximum time (ms) allowed to return a position
+        timeout: 1000, // Maximum time (ms) allowed to return a position
         maximumAge: 0, // Forces the browser to fetch a fresh position, not a cached one
       };
 
