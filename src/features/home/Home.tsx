@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 //static
 import Top from "./shared/Top";
 import LeftNavigationBar from "./shared/LeftNavigationBar";
+import LoadingAnimation from "./shared/LoadingAnimation";
 //dynamic
 import Overview from "./features/overview/Overview";
 const Alerts = lazy(() => import("./features/alerts/Alerts"));
@@ -90,14 +91,8 @@ function Home(): React.ReactElement {
       <Top />
       <main className="w-full h-full max-h-full flex">
         <LeftNavigationBar />
-        <article className="w-full h-full component-spacing">
-          <Suspense
-            fallback={
-              <div className="w-[400px] h-13 bg-green-400 text-text-color">
-                Loading...
-              </div>
-            }
-          >
+        <article className="w-full h-full component-spacing relative">
+          <Suspense fallback={<LoadingAnimation />}>
             {renderOverview && <Overview />}
             {renderAlerts && <Alerts />}
             {renderStudents && <StudentsRecord />}
