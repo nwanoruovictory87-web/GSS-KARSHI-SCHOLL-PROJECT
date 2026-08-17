@@ -18,11 +18,11 @@ function AllStudentsTracking(): React.ReactElement {
       setIsDevicesLocation(false);
     });
   return (
-    <div className="component-spacing w-full h-full  relative">
+    <div className="component-spacing h-full w-full relative">
       <div className="w-full h-full pb-12">
-        {isDevicesLocation && (
+        {
           <MapContainer
-            center={[latitude, longtitude]}
+            center={[51.505, -0.02]}
             zoom={13}
             scrollWheelZoom={false}
             style={{ width: "100%", height: "100%" }}
@@ -31,13 +31,13 @@ function AllStudentsTracking(): React.ReactElement {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[latitude, longtitude]}>
+            <Marker position={[51.505, -0.02]}>
               <Popup>
                 A pretty CSS3 popup. <br /> Easily customizable.
               </Popup>
             </Marker>
           </MapContainer>
-        )}
+        }
       </div>
     </div>
   );

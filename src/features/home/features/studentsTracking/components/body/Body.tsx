@@ -4,7 +4,7 @@ import WacthInfo from "./components/wacthInfo/WacthInfo";
 import StudentsLocation from "./components/studentLocationInfo/StudentsLocation";
 function Body(): React.ReactElement {
   return (
-    <article className="w-full h-full flex gap-7">
+    <article className="w-full min-h-142 h-full flex gap-7">
       <StudentInfo />
       <section className="w-[70%] h-full rounded-xl flex flex-col gap-7">
         <Map />

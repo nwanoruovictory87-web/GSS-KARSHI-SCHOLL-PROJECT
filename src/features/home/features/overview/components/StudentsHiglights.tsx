@@ -1,8 +1,7 @@
 import groupAImg from "/assets/student.jpeg";
-
 function StudentsHiglights(): React.ReactElement {
   return (
-    <article className="w-full  h-fit  grid grid-cols-4 gap-10">
+    <article className="w-full  h-fit  grid  grid-cols-4 gap-10">
       <section className="w-full min-w-50 h-fit bg-pramary-dark-blue rounded-xl flex flex-col gap-2 component-spacing ">
         <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
           Total Students

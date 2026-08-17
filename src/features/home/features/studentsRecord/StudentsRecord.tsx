@@ -4,8 +4,8 @@ function StudentsRecord(): React.ReactElement {
   return (
     <div className="component-spacing h-full relative">
       <Filter />
-      <article className="mt-7 rounded-xl w-full h-[83%]  overflow-hidden bg-pramary-dark-blue border border-text-color ">
-        <section className="w-full h-10 bg-gray-200 grid grid-cols-[30%_30%_15%_15%_10%] pr-4">
+      <article className="mt-7 rounded-xl w-full h-[80%]  overflow-hidden bg-pramary-dark-blue border border-text-color ">
+        <section className="w-full h-10 bg-gray-200 grid grid-cols-[30%_30%_15%_15%_10%] ">
           <span className="flex justify-center items-center font-medium border-r border-r-pramary-dark-blue">
             <h5>Full Name</h5>
           </span>
