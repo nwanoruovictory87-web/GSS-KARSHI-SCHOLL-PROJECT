@@ -1,11 +1,25 @@
 import { useState } from "react";
+import { getNewTrackingId } from "../../api/StudentsRecordApi";
 import StudentInfo from "./components/StudentInfo";
 import DayOrBoadingOption from "./components/DayOrBoadingOption";
-import loadingAnimationLine from "/assets/loading-line.gif";
+
 function AddStudents({ control }: { control: () => void }): React.ReactElement {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [trackingID, setTrackingID] = useState<string>(
+    "***************************",
+  );
   function getTrackingId(): void {
     setIsLoading(true);
+    getNewTrackingId()
+      .then((data) => {
+        //alert(data.message);
+        setTrackingID(data.ID);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(`error ${error}`);
+        setIsLoading(false);
+      });
   }
   return (
     <article className="w-full h-screen transition-all bg-[#63606027] rounded-xl component-spacing absolute top-0 z-10 ">
@@ -32,10 +46,14 @@ function AddStudents({ control }: { control: () => void }): React.ReactElement {
                     Tracking ID
                   </h5>
                   {isLoading ? (
-                    <img className="w-75 h-20" src={loadingAnimationLine}></img>
+                    <span className="w-75 h-fit block rounded-full border border-body-color pl-1">
+                      <span className="w-0 h-4 block rounded-full  first-inner-child bg-pramary-dark-blue">
+                        <span className="w-0 h-4 block  second-inner-child bg-white "></span>
+                      </span>
+                    </span>
                   ) : (
                     <h5 className="font-sans font-medium text-[16px]">
-                      ***************************
+                      {trackingID}
                     </h5>
                   )}
                 </span>

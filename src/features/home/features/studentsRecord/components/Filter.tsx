@@ -1,4 +1,4 @@
-import AddStudents from "../../../shared/StudentCardPopUp/AddStudents";
+import AddStudents from "./StudentCardPopUp/AddStudents";
 import { useState } from "react";
 function Filter(): React.ReactElement {
   const [isPopUp, setPopUp] = useState<boolean>(false);
