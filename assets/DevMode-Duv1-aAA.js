@@ -1,0 +1,1 @@
+import{t as e}from"./index-D90o70gi.js";var t=e();function n(){return(0,t.jsx)(t.Fragment,{})}export{n as default};
