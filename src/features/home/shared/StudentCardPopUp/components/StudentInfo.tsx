@@ -79,6 +79,29 @@ function StudentInfo(): React.ReactElement {
             ></input>
           </span>
         </div>
+        {/*** */}
+        <div className="w-full h-fit bg-pramary-dark-blue  pt-2 pb-2 grid grid-cols-3">
+          <span className="pl-2 border-r border-r-body-color text-text-color font-sans font-medium text-[16px]">
+            <h5>House</h5>
+          </span>
+          <span className=" pl-2 border-r border-r-body-color text-text-color font-sans font-medium text-[16px]">
+            <h5></h5>
+          </span>
+          <span className=" pl-2 text-text-color font-sans font-medium text-[16px]">
+            <h5></h5>
+          </span>
+        </div>
+        {/** */}
+        <div className="w-full h-fit  grid grid-cols-3 border-b border-b-body-color border-r border-r-body-color border-l border-l-body-color">
+          <span className="border-r border-r-body-color text-pramary-dark-blue font-sans font-medium text-[16px] ">
+            <input
+              className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-pramary-dark-blue placeholder:font-semibold"
+              placeholder="Enter text...."
+            ></input>
+          </span>
+          <span className="border-r border-r-body-color pl-2 text-pramary-dark-blue font-sans font-medium text-[16px]"></span>
+          <span className=" pl-2 text-pramary-dark-blue font-sans font-medium text-[16px]"></span>
+        </div>
       </div>
       {/*** */}
     </>

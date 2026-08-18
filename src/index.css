@@ -47,3 +47,6 @@ input:focus {
 .min20Max24px {
   font-size: clamp(20px, 4vw, 24px);
 }
+.button-shadow {
+  box-shadow: 2px 2px 5px 2px rgba(158, 157, 157, 0.925);
+}
