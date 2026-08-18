@@ -1,10 +1,16 @@
+import noProfileImg from "/assets/student-male.png";
 function StudentInfo(): React.ReactElement {
   return (
     <>
       {/**profile pic */}
       <div className="w-full h-fit flex justify-center mt-5">
         <div className="w-fit h-fit text-center flex flex-col items-center gap-2">
-          <span className="w-25 h-25 block bg-gray-400 rounded-full "></span>
+          <span className="w-25 h-25 block  ">
+            <img
+              className="w-full h-full rounded-full"
+              src={noProfileImg}
+            ></img>
+          </span>
           <span className="w-fit flex">
             <h5 className="text-[#4646d1] text-[16px] font-semibold font-sans hover:text-[#9b9beb] transition-all pointer">
               Upload Student picture

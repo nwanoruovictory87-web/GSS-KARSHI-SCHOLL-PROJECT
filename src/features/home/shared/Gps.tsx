@@ -15,7 +15,7 @@ export function GetGpsLocation(): Promise<GpsPosition> {
       };
 
       // 2. Start watching the live position
-      navigator.geolocation.getCurrentPosition(
+      navigator.geolocation.watchPosition(
         successCallback,
         errorCallback,
         options,

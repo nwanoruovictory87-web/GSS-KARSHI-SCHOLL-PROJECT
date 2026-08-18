@@ -6,8 +6,8 @@ function Filter(): React.ReactElement {
     setPopUp(!isPopUp);
   }
   return (
-    <div className="w-full relative">
-      <filter className="flex w-full gap-5">
+    <article className="w-full relative">
+      <section className="flex w-full gap-5">
         <section className="w-50 max-w-50 h-12 bg-pramary-dark-blue rounded-xl flex gap-2 items-center font-semibold  text-text-color pl-2 pr-2">
           <i className="fa fa-calendar min20Max24px"></i>
           <h5>Year</h5>
@@ -32,9 +32,9 @@ function Filter(): React.ReactElement {
           <i className="fa fa-plus min20Max24px -mr-1"></i>
           <h5>Add</h5>
         </section>
-      </filter>
+      </section>
       {isPopUp && <AddStudents control={popUpCard} />}
-    </div>
+    </article>
   );
 }
 export default Filter;

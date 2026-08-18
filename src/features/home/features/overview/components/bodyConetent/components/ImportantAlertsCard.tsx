@@ -1,6 +1,6 @@
 function ImportantAlertsCard(): React.ReactElement {
   return (
-    <div className="w-full h-12 text-text-color border border-body-color grid grid-cols-[55%_15%_15%_15%] pl-1 pr-1">
+    <div className="w-full h-12 text-text-color  grid grid-cols-[55%_15%_15%_15%] ">
       <span className="border-r border-body-color flex items-center">
         <h5 className="line-clamp-1">7348b7c337btv357n,8u</h5>
       </span>
