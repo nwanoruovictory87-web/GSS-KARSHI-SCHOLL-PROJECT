@@ -1,1 +1,0 @@
-import{t as e}from"./index-Y7ICflXx.js";var t=e();function n(){return(0,t.jsx)(t.Fragment,{})}export{n as default};
