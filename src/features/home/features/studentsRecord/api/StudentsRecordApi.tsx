@@ -11,6 +11,24 @@ interface StudentsDataInfo {
   bordingStudent: number;
   image: null;
 }
+interface StudentsData {
+  _id: string;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  age: string;
+  dateOfBirth: string;
+  gender: string;
+  house: string;
+  year: string;
+  dayStudent: number;
+  bordingStudent: number;
+  trackingID: string;
+  image: null;
+  studentYear: string;
+  createdAt: Date;
+  __v: number;
+}
 const server = import.meta.env.VITE_BACKEND_URL;
 export function getNewTrackingId(): Promise<{
   ok: boolean;
@@ -74,6 +92,39 @@ export function createNewStudentsData({
           .catch((error) => {
             reject(error);
           });
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+//
+export function getStudentsRecords(): Promise<{
+  ok: boolean;
+  message: string;
+  records: StudentsData[];
+}> {
+  return new Promise((resolve, reject) => {
+    const getRecords = fetch(`${server}/students/all/students/records`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    getRecords
+      .then((responds) => {
+        responds.json().then((data) => {
+          if (data.ok) {
+            const res: {
+              ok: boolean;
+              message: string;
+              records: StudentsData[];
+            } = data;
+            resolve(res);
+          } else {
+            reject(data);
+          }
+        });
       })
       .catch((error) => {
         reject(error);
