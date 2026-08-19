@@ -33,7 +33,7 @@ function Filter(): React.ReactElement {
           <h5>Add</h5>
         </section>
       </section>
-      {isPopUp && <AddStudents control={popUpCard} />}
+      {isPopUp && <AddStudents control={popUpCard} readOnly={0} />}
     </article>
   );
 }

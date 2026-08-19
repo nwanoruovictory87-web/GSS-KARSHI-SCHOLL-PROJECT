@@ -2,24 +2,98 @@ import { useState } from "react";
 import { getNewTrackingId } from "../../api/StudentsRecordApi";
 import StudentInfo from "./components/StudentInfo";
 import DayOrBoadingOption from "./components/DayOrBoadingOption";
-
-function AddStudents({ control }: { control: () => void }): React.ReactElement {
+interface StudentsInfo {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  age: string;
+  dateOfBirth: string;
+  gender: string;
+  house: string;
+  year: string;
+}
+interface StudentsDataInfo {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  age: string;
+  dateOfBirth: string;
+  gender: string;
+  house: string;
+  year: string;
+  dayStudent: number;
+  bordingStudent: number;
+  image: null;
+}
+function AddStudents({
+  control,
+  readOnly,
+}: {
+  control: () => void;
+  readOnly: number;
+}): React.ReactElement {
+  const [validateInput, setValidateInput] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [trackingID, setTrackingID] = useState<string>(
     "***************************",
   );
-  function getTrackingId(): void {
+  const [saveData, setSaveData] = useState<boolean>(false);
+  const [isTrackingID, setIsTrackingID] = useState<boolean>(false);
+  const [day, setDay] = useState<boolean>(false);
+  const [bording, setBording] = useState<boolean>(false);
+  //
+  function getTrackingId(inputState: number): void {
+    if (inputState == 0) {
+      setValidateInput(1);
+      return;
+    } else if (inputState == 2) {
+      setValidateInput(0);
+      return;
+    } else {
+      setValidateInput(0);
+    }
+    if ((!day && !bording) || (day && bording)) return;
     setIsLoading(true);
     getNewTrackingId()
       .then((data) => {
         //alert(data.message);
         setTrackingID(data.ID);
         setIsLoading(false);
+        setSaveData(true);
       })
       .catch((error) => {
         console.log(`error ${error}`);
         setIsLoading(false);
       });
+  }
+  async function saveDataToDb(studentInfo: StudentsDataInfo) {
+    try {
+      console.log(studentInfo);
+    } catch (error) {
+      console.log(`error ${error}`);
+    }
+  }
+  function validateSaveInputFunc(
+    result: number,
+    studentsInfo: StudentsInfo | null,
+  ): void {
+    if (result == 0) {
+      setValidateInput(1);
+      return;
+    } else if (result == 2) {
+      setValidateInput(0);
+      return;
+    } else {
+      setValidateInput(0);
+    }
+    if ((!day && !bording) || (day && bording)) return;
+    if (!studentsInfo) return;
+    saveDataToDb({
+      ...studentsInfo,
+      dayStudent: day ? 1 : 0,
+      bordingStudent: bording ? 1 : 0,
+      image: null,
+    });
   }
   return (
     <article className="w-full h-screen transition-all bg-[#63606027] rounded-xl component-spacing absolute top-0 z-10 ">
@@ -34,9 +108,15 @@ function AddStudents({ control }: { control: () => void }): React.ReactElement {
           </div>
           <div className="w-full h-full  overflow-y-auto pb-30">
             {/**students infor */}
-            <StudentInfo />
+            <StudentInfo
+              readonly={readOnly}
+              validateInput={validateInput}
+              validateInputFunc={getTrackingId}
+              saveData={isTrackingID}
+              validateSaveInputFunc={validateSaveInputFunc}
+            />
             {/**day or bording */}
-            <DayOrBoadingOption />
+            <DayOrBoadingOption setDay={setDay} setBording={setBording} />
             {/**action  */}
             <div className="mt-2 flex justify-center text-center">
               <div className="flex flex-col gap-2">
@@ -59,8 +139,11 @@ function AddStudents({ control }: { control: () => void }): React.ReactElement {
                 </span>
                 {/**action button */}
                 <div className="flex justify-center mt-2">
-                  {!true ? (
-                    <button className="w-fit h-fit p-4 rounded-3xl  bg-[#089408] hover:bg-[#51df51] transition-all pointer text-center button-shadow">
+                  {saveData ? (
+                    <button
+                      className="w-fit h-fit p-4 rounded-3xl  bg-[#089408] hover:bg-[#51df51] transition-all pointer text-center button-shadow"
+                      onClick={() => setIsTrackingID(true)}
+                    >
                       <h5 className="text-[16px] font-sans font-semibold text-text-color">
                         Save Data
                       </h5>
@@ -68,7 +151,7 @@ function AddStudents({ control }: { control: () => void }): React.ReactElement {
                   ) : (
                     <button
                       className="w-fit h-fit p-4 rounded-3xl  bg-[#4646d1] hover:bg-[#9b9beb] transition-all pointer text-center button-shadow"
-                      onClick={getTrackingId}
+                      onClick={() => getTrackingId(0)}
                     >
                       <h5 className="text-[16px] font-sans font-semibold text-text-color">
                         Generate ID

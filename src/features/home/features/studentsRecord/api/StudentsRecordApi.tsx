@@ -1,3 +1,16 @@
+interface StudentsDataInfo {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  age: string;
+  dateOfBirth: string;
+  gender: string;
+  house: string;
+  year: string;
+  dayStudent: number;
+  bordingStudent: number;
+  image: null;
+}
 const server = import.meta.env.VITE_BACKEND_URL;
 export function getNewTrackingId(): Promise<{
   ok: boolean;
@@ -16,7 +29,7 @@ export function getNewTrackingId(): Promise<{
       .then((res) => {
         const respond = res.json();
         respond.then((result) => {
-          console.log(result);
+          //console.log(result);
           if (!result.ok) {
             reject(result);
           } else {
@@ -28,5 +41,39 @@ export function getNewTrackingId(): Promise<{
         reject(error);
       });
     //
+  });
+}
+//
+export function createNewStudentsData({
+  studentData,
+}: {
+  studentData: StudentsDataInfo;
+}) {
+  return new Promise((resolve, reject) => {
+    const postStudentsData = fetch(`${server}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(studentData),
+    });
+    postStudentsData
+      .then((responds) => {
+        responds
+          .json()
+          .then((data) => {
+            if (data.ok) {
+              resolve(data);
+            } else {
+              reject(data);
+            }
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      })
+      .catch((error) => {
+        reject(error);
+      });
   });
 }

@@ -50,6 +50,11 @@ function AllStudentsTracking(): React.ReactElement {
                 A pretty CSS3 popup. <br /> Easily customizable.
               </Popup>
             </Marker>
+            <Marker position={[8.9887, 7.5601]}>
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>
           </MapContainer>
         ) : (
           <span className="flex h-full justify-center items-center">
