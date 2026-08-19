@@ -187,7 +187,7 @@ function AddStudents({
           </div>
         </section>
         {/**loading data */}
-        {!loadingAnimation && <LoadingAnimation />}
+        {loadingAnimation && <LoadingAnimation />}
       </div>
     </article>
   );
