@@ -1,62 +1,96 @@
+import ViewStudent from "./StudentCardPopUp/ViewStudent";
+import { useState } from "react";
 function StudentsInfo({
   image,
   firstName,
   middleName,
   lastName,
+  day,
+  bording,
   trackingID,
   gender,
   house,
   year,
+  age,
+  dateOfBirth,
 }: {
   image: string | null;
   firstName: string;
   middleName: string;
   lastName: string;
   trackingID: string;
+  day: boolean;
+  bording: boolean;
   gender: string;
   house: string;
   year: string;
+  age: string;
+  dateOfBirth: string;
 }): React.ReactElement {
+  const [viewMode, setViewMode] = useState<boolean>(false);
   return (
-    <section className="w-full h-15  grid grid-cols-[28%_25%_12%_10%_10%_15%] border border-body-color">
-      <span className="flex gap-4 pl-2 p-1 items-center font-medium border-r border-body-color ">
-        <span className="min-w-13 min-h-13 max-w-13 max-h-13 rounded-full bg-gray-200"></span>
-        <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-          {firstName} {middleName} {lastName}
-        </h5>
-      </span>
-      <span className="flex pl-2  items-center font-medium border-r border-body-color">
-        <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-          {trackingID}
-        </h5>
-      </span>
-      <span className="flex pl-2  items-center font-medium border-r border-body-color">
-        <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-          {gender}
-        </h5>
-      </span>
-      <span className="flex pl-2  items-center font-medium border-r border-body-color">
-        <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-          {house}
-        </h5>
-      </span>
-      <span className="flex pl-2  items-center font-medium border-r border-body-color">
-        <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-          {year}
-        </h5>
-      </span>
-      <span className="grid grid-cols-3 gap-1 pl-2 pr-2 text-text-color  items-center font-medium ">
-        <span className="p-2 pointer rounded-xs bg-blue-700 text-center">
-          <i className="fa fa-pen"></i>
+    <>
+      <section className="w-full h-15  grid grid-cols-[28%_25%_12%_10%_10%_15%] border border-body-color">
+        <span className="flex gap-4 pl-2 p-1 items-center font-medium border-r border-body-color ">
+          <span className="min-w-13 min-h-13 max-w-13 max-h-13 rounded-full bg-gray-200"></span>
+          <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
+            {firstName} {middleName} {lastName}
+          </h5>
         </span>
-        <span className="p-2 pointer rounded-xs bg-green-700 text-center">
-          <i className="fa fa-eye"></i>
+        <span className="flex pl-2  items-center font-medium border-r border-body-color">
+          <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
+            {trackingID}
+          </h5>
         </span>
-        <span className="p-2 pointer rounded-xs bg-red-700 text-center">
-          <i className="fa fa-trash"></i>
+        <span className="flex pl-2  items-center font-medium border-r border-body-color">
+          <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
+            {gender}
+          </h5>
         </span>
-      </span>
-    </section>
+        <span className="flex pl-2  items-center font-medium border-r border-body-color">
+          <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
+            {house}
+          </h5>
+        </span>
+        <span className="flex pl-2  items-center font-medium border-r border-body-color">
+          <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
+            {year}
+          </h5>
+        </span>
+        <span className="grid grid-cols-3 gap-1 pl-2 pr-2 text-text-color  items-center font-medium ">
+          <span className="p-2 pointer rounded-xs bg-blue-700 text-center">
+            <i className="fa fa-pen"></i>
+          </span>
+          <span
+            className="p-2 pointer rounded-xs bg-green-700 text-center"
+            onClick={() => setViewMode(true)}
+          >
+            <i className="fa fa-eye"></i>
+          </span>
+          <span className="p-2 pointer rounded-xs bg-red-700 text-center">
+            <i className="fa fa-trash"></i>
+          </span>
+        </span>
+      </section>
+      {viewMode && (
+        <ViewStudent
+          control={() => {
+            setViewMode(false);
+          }}
+          day={day}
+          bording={bording}
+          trackingID={trackingID}
+          firstName={firstName}
+          middleName={middleName}
+          lastName={lastName}
+          age={age}
+          dateOfBirth={dateOfBirth}
+          gender={gender}
+          house={house}
+          year={year}
+        />
+      )}
+    </>
   );
 }
 export default StudentsInfo;

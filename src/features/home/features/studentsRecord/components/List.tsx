@@ -50,6 +50,10 @@ function List(): React.ReactElement {
               gender={data.gender}
               year={data.studentYear}
               key={data.trackingID}
+              dateOfBirth={data.dateOfBirth}
+              day={data.dayStudent > 0 ? true : false}
+              bording={data.bordingStudent > 0 ? true : false}
+              age={data.age}
             />
           );
         })}

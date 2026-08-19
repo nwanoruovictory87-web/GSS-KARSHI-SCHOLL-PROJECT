@@ -204,7 +204,10 @@ function StudentInfo(prop: ControlData): React.ReactElement {
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
               placeholder="Exp Victory...."
               value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              onChange={(e) => {
+                if (prop.readonly === 1) return;
+                setFirstName(e.target.value);
+              }}
             ></input>
           </span>
           <span
@@ -215,7 +218,10 @@ function StudentInfo(prop: ControlData): React.ReactElement {
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
               placeholder="Exp Chibuzo...."
               value={middleName}
-              onChange={(e) => setMiddleName(e.target.value)}
+              onChange={(e) => {
+                if (prop.readonly === 1) return;
+                setMiddleName(e.target.value);
+              }}
             ></input>
           </span>
           <span
@@ -226,7 +232,10 @@ function StudentInfo(prop: ControlData): React.ReactElement {
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
               placeholder="Exp Nwanoruo...."
               value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              onChange={(e) => {
+                if (prop.readonly === 1) return;
+                setLastName(e.target.value);
+              }}
             ></input>
           </span>
         </div>
@@ -252,7 +261,10 @@ function StudentInfo(prop: ControlData): React.ReactElement {
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
               placeholder="Exp 22...."
               value={age}
-              onChange={(e) => setAge(e.target.value)}
+              onChange={(e) => {
+                if (prop.readonly === 1) return;
+                setAge(e.target.value);
+              }}
             ></input>
           </span>
           <span
@@ -263,7 +275,10 @@ function StudentInfo(prop: ControlData): React.ReactElement {
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
               placeholder="Exp 14/07/2004...."
               value={dateOfBirth}
-              onChange={(e) => setDateOfBirth(e.target.value)}
+              onChange={(e) => {
+                if (prop.readonly === 1) return;
+                setDateOfBirth(e.target.value);
+              }}
             ></input>
           </span>
           <span
@@ -274,7 +289,10 @@ function StudentInfo(prop: ControlData): React.ReactElement {
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
               placeholder="Exp Male/Female...."
               value={gender}
-              onChange={(e) => setGender(e.target.value)}
+              onChange={(e) => {
+                if (prop.readonly === 1) return;
+                setGender(e.target.value);
+              }}
             ></input>
           </span>
         </div>
@@ -300,7 +318,10 @@ function StudentInfo(prop: ControlData): React.ReactElement {
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold "
               placeholder="Garki...."
               value={house}
-              onChange={(e) => setHouse(e.target.value)}
+              onChange={(e) => {
+                if (prop.readonly === 1) return;
+                setHouse(e.target.value);
+              }}
             ></input>
           </span>
           <span
@@ -311,7 +332,10 @@ function StudentInfo(prop: ControlData): React.ReactElement {
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
               placeholder="2020...."
               value={year}
-              onChange={(e) => setYear(e.target.value)}
+              onChange={(e) => {
+                if (prop.readonly === 1) return;
+                setYear(e.target.value);
+              }}
             ></input>
           </span>
           <span className=" pl-2 border border-body-color text-pramary-dark-blue font-sans font-medium text-[16px]"></span>
