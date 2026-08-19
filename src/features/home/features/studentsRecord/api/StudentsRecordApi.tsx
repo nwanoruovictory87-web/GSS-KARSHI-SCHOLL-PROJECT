@@ -48,9 +48,12 @@ export function createNewStudentsData({
   studentData,
 }: {
   studentData: StudentsDataInfo;
-}) {
+}): Promise<{
+  message: string;
+  ok: boolean;
+}> {
   return new Promise((resolve, reject) => {
-    const postStudentsData = fetch(`${server}`, {
+    const postStudentsData = fetch(`${server}/students/add/new/students`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
