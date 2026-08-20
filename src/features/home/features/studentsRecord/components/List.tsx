@@ -74,8 +74,8 @@ function List(): React.ReactElement {
             );
           })
         ) : isLoading ? (
-          Array.from({ length: 40 }).map(() => {
-            return <LStudentInfo />;
+          Array.from({ length: 40 }).map((_, i) => {
+            return <LStudentInfo key={i} />;
           })
         ) : (
           <div className="w-full h-full flex justify-center items-center mt-[12%]">

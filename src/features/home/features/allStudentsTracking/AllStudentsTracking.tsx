@@ -1,36 +1,61 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { useState, useEffect } from "react";
 import { GetGpsLocation } from "../../shared/Gps";
+import { SocketApi } from "../../../../storage/Socket";
 //loading animation
 import LoadingMap from "/assets/PlanetWorldPreloader.gif";
 //import OfflineTileLayer from "./OfflineTileLayer";
 import "leaflet/dist/leaflet.css";
+interface GpsPosition {
+  latitude: number;
+  longitude: number;
+  trackingID: string;
+}
 function AllStudentsTracking(): React.ReactElement {
+  const socketApi = SocketApi();
+  const { socket } = socketApi;
   const [isDevicesLocation, setIsDevicesLocation] = useState<boolean>(false);
   const [latitude, setLatitude] = useState<number>(0);
   const [longtitude, setLongtitude] = useState<number>(0);
+  //
   useEffect(() => {
-    const retrayTimer = () =>
-      !isDevicesLocation &&
-      setTimeout(() => {
-        getLocation();
-      }, 5000);
-    function getLocation() {
-      GetGpsLocation()
-        .then((location) => {
-          setLatitude(location.latitude);
-          setLongtitude(location.longitude);
-          setIsDevicesLocation(true);
-        })
-        .catch((error) => {
-          console.error("Error getting location:", error);
-          setIsDevicesLocation(false);
-          retrayTimer(); // Retry after 5 seconds
-        });
-    }
-    getLocation();
+    GetGpsLocation(
+      (position: { accuracy: number; latitude: number; longitude: number }) => {
+        setLatitude(position.latitude);
+        setLongtitude(position.longitude);
+        setIsDevicesLocation(true);
+      },
+      (error, statusCode) => {
+        console.log(error, statusCode);
+      },
+    );
   }, []);
-
+  //
+  useEffect(() => {
+    if (!socket) return;
+    socket.emit("get-students-location");
+    const requstLocationEvery20Second = setInterval(() => {
+      socket.emit("get-students-location");
+    }, 20000); // requst all location every 20 seconds
+    //
+    return () => {
+      // clean up on component unmount
+      clearInterval(requstLocationEvery20Second);
+    };
+  }, []);
+  //
+  useEffect(() => {
+    if (!socket) return;
+    const allStudentsLocation = (list: GpsPosition[] | []) => {
+      console.log(list);
+    };
+    socket.on("all-students-location", allStudentsLocation);
+    //
+    return () => {
+      // clean up
+      socket.off("all-students-location", allStudentsLocation);
+    };
+  }, []);
   return (
     <div className="component-spacing h-full w-full relative">
       <div className="w-full h-full pb-12">

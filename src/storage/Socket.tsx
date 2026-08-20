@@ -1,6 +1,17 @@
 import { createContext, useContext, useRef, useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
-type AppSocket = Socket;
+interface GpsPosition {
+  latitude: number;
+  longitude: number;
+  trackingID: string;
+}
+interface ListenEvents {
+  "all-students-location": (list: GpsPosition[] | []) => void;
+}
+interface EmitEvents {
+  "get-students-location": () => void;
+}
+type AppSocket = Socket<ListenEvents, EmitEvents>;
 interface SocketInstanceApi {
   socket: AppSocket | null;
   conectSocket: () => void;
@@ -19,7 +30,7 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
   function conectSocket(): void {
     console.log(socketRef);
     const newSocket = io(server, {
-      autoConnect: false,
+      autoConnect: true,
     });
     socketRef.current = newSocket;
     if (!socketRef.current || isSocketConnected) return;
@@ -42,6 +53,9 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
         socketRef.current.disconnect();
       }
     };
+  }, []);
+  useEffect(() => {
+    conectSocket();
   }, []);
   console.log(server);
   return (
