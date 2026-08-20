@@ -84,10 +84,12 @@ function AddStudents({
             ok: boolean;
           } = responds;
           alert(res.message);
+          setLoadingAnimation(false);
           control();
         })
         .catch((error) => {
           console.log(error);
+          setLoadingAnimation(false);
         });
     } catch (error) {
       console.log(`error ${error}`);

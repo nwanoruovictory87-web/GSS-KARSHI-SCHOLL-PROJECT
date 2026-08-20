@@ -131,3 +131,37 @@ export function getStudentsRecords(): Promise<{
       });
   });
 }
+//
+export function deleteStudent(
+  trackingID: string,
+): Promise<{ ok: boolean; message: string }> {
+  return new Promise((resolve, reject) => {
+    const deleteStudentData = fetch(
+      `${server}/students/delete/student/id/${trackingID}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    deleteStudentData
+      .then((responds) => {
+        responds
+          .json()
+          .then((data) => {
+            if (data.ok) {
+              resolve(data);
+            } else {
+              reject(data.message);
+            }
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}

@@ -1,5 +1,7 @@
-import ViewStudent from "./StudentCardPopUp/ViewStudent";
 import { useState } from "react";
+import ViewStudent from "./StudentCardPopUp/ViewStudent";
+import LoadingAnimation from "../../../shared/LoadingAnimation";
+import { deleteStudent } from "../api/StudentsRecordApi";
 function StudentsInfo({
   image,
   firstName,
@@ -28,6 +30,21 @@ function StudentsInfo({
   dateOfBirth: string;
 }): React.ReactElement {
   const [viewMode, setViewMode] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  //
+  function deleteStudentData(trackingID: string) {
+    setIsLoading(true);
+    deleteStudent(trackingID)
+      .then((data) => {
+        alert(data.message);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+        setIsLoading(false);
+      });
+  }
   return (
     <>
       <section className="w-full h-15  grid grid-cols-[28%_25%_12%_10%_10%_15%] border border-body-color">
@@ -67,7 +84,10 @@ function StudentsInfo({
           >
             <i className="fa fa-eye"></i>
           </span>
-          <span className="p-2 pointer rounded-xs bg-red-700 text-center">
+          <span
+            className="p-2 pointer rounded-xs bg-red-700 text-center"
+            onClick={() => deleteStudentData(trackingID)}
+          >
             <i className="fa fa-trash"></i>
           </span>
         </span>
@@ -90,6 +110,7 @@ function StudentsInfo({
           year={year}
         />
       )}
+      {isLoading && <LoadingAnimation />}
     </>
   );
 }

@@ -65,6 +65,9 @@ function ViewStudent({
                   {/**tracking ID */}
                   <span className="flex flex-col gap-1">
                     <h5 className="text-[20px] font-sans font-semibold">
+                      Tracking ID
+                    </h5>
+                    <h5 className="font-sans font-medium text-[16px]">
                       {trackingID}
                     </h5>
                   </span>
