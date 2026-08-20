@@ -1,10 +1,10 @@
 import StudentInfo from "./components/studentinfo/StudentInfo";
 import Map from "./components/map/Map";
 import WacthInfo from "./components/watchInfo/WatchInfo";
-import StudentsLocation from "./components/studentLocationInfo/StudentsLocation";
+import AiOverview from "./components/aiOverview/AiOverview";
 import LStudentInfo from "./shared/loadingSections/studentinfo/StudentInfo";
 import LWacthInfo from "./shared/loadingSections/watchInfo/WatchInfo";
-import LStudentsLocation from "./shared/loadingSections/studentLocationInfo/StudentsLocation";
+import LAiOverview from "./shared/loadingSections/aiOverview/AiOverview";
 interface TrackingData {
   firstName: string;
   middleName: string;
@@ -69,7 +69,7 @@ function Body({
           ) : (
             <LWacthInfo />
           )}
-          <StudentsLocation />
+          <AiOverview />
         </article>
       </section>
     </article>
