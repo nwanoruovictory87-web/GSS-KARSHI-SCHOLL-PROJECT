@@ -1,43 +1,16 @@
-import { useEffect, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { GetGpsLocation } from "../../../../../../shared/Gps";
+
 import gpsLoading from "/assets/PlanetWorldPreloader.gif";
 import "leaflet/dist/leaflet.css";
-function Map(): React.ReactElement {
-  const [isDevicesLocation, setIsDevicesLocation] = useState<boolean>(false);
-  const [latitude, setLatitude] = useState<number>(0);
-  const [longtitude, setLongtitude] = useState<number>(0);
-  useEffect(() => {
-    let errorCode = 0;
-    let shouldAbort = false; //abort retry location connection control
-    function getLocation() {
-      console.log(shouldAbort);
-      if (shouldAbort) return;
-      GetGpsLocation()
-        .then((location) => {
-          setLatitude(location.latitude);
-          setLongtitude(location.longitude);
-          setIsDevicesLocation(true);
-        })
-        .catch((error) => {
-          console.error("Error getting location:", error);
-          setIsDevicesLocation(false);
-          errorCode = error.status;
-          setTimeout(() => {
-            if (!isDevicesLocation && errorCode === 303) {
-              getLocation();
-            }
-          }, 5000);
-          // Retry after 5 seconds
-        });
-    }
-    getLocation();
-    //
-    return () => {
-      //console.log("clean up");
-      shouldAbort = true;
-    };
-  }, []);
+function Map({
+  latitude,
+  longtitude,
+  trackingID,
+}: {
+  latitude?: number;
+  longtitude?: number;
+  trackingID?: string;
+}): React.ReactElement {
   return (
     <section className="rounded-t-xl  border border-text-color bg-pramary-dark-blue w-full h-[60%]   relative">
       <div className="w-full h-full  flex flex-col max-h-full  rounded-xl">
@@ -47,7 +20,7 @@ function Map(): React.ReactElement {
           </h5>
         </span>
         <div className="w-full h-full relative">
-          {isDevicesLocation ? (
+          {latitude && longtitude && trackingID ? (
             <MapContainer
               center={[latitude, longtitude]}
               zoom={13}
@@ -59,9 +32,7 @@ function Map(): React.ReactElement {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
               <Marker position={[latitude, longtitude]}>
-                <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
+                <Popup>{trackingID}</Popup>
               </Marker>
             </MapContainer>
           ) : (

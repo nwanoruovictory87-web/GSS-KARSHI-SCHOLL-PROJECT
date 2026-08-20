@@ -54,7 +54,11 @@ function Body({
         <LStudentInfo />
       )}
       <section className="w-[70%] h-full rounded-xl flex flex-col gap-7 ">
-        <Map />
+        <Map
+          latitude={trackingData?.latitude}
+          longtitude={trackingData?.longitude}
+          trackingID={trackingData?.trackingID}
+        />
         <article className="w-full h-[40%]  flex gap-7">
           {trackingData ? (
             <WacthInfo

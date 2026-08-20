@@ -49,7 +49,7 @@ function List(): React.ReactElement {
     <div className=" w-full h-full overflow-y-scroll pb-12 ">
       {/** */}
       <div className="w-full flex flex-col  border-r border-r-body-color border-l border-l-body-coborder-r-body-color ">
-        {setStudentsRecirdList.length != 0
+        {studentsRecordsList.length != 0
           ? studentsRecordsList.map((data: StudentsData) => {
               return (
                 <StudentsInfo
