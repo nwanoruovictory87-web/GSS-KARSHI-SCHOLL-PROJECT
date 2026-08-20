@@ -1,4 +1,5 @@
 import StudentInfo from "./components/StudentInfo";
+import DayOrBoadingOption from "./components/DayOrBoadingOption";
 function ViewStudent({
   control,
   day,
@@ -58,8 +59,13 @@ function ViewStudent({
                 }}
               />
               {/**day or bording */}
-              {/**<DayOrBoadingOption setDay={setDay} setBording={setBording} /> */}
-              {/**action  */}
+              <DayOrBoadingOption
+                setDay={() => {}}
+                setBording={() => {}}
+                readOnly={true}
+                day={day}
+                bording={bording}
+              />
               <div className="mt-2 flex justify-center text-center">
                 <div className="flex flex-col gap-2">
                   {/**tracking ID */}

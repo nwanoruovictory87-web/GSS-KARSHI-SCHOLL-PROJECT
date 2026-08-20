@@ -45,24 +45,28 @@ export function GetGpsLocation(): Promise<GpsPosition> {
     function errorCallback(error: any) {
       switch (error.code) {
         case error.PERMISSION_DENIED:
-          reject(
-            `User denied the request for Geolocation. status-code: ${403}`,
-          );
+          reject({
+            message: `User denied the request for Geolocation `,
+            status: 401,
+          });
           break;
         case error.POSITION_UNAVAILABLE:
-          reject(
-            `Location information is unavailable (GPS signal lost). status-code: ${404}`,
-          );
+          reject({
+            message: `Location information is unavailable (GPS signal lost). `,
+            status: 404,
+          });
           break;
         case error.TIMEOUT:
-          reject(
-            `The request to get user location timed out. status-code: ${401}`,
-          );
+          reject({
+            message: `The request to get user location timed out `,
+            status: 303,
+          });
           break;
         default:
-          reject(
-            `An unknown error occurred. ${error.message} status-code: ${500}`,
-          );
+          reject({
+            message: `An unknown error occurred. ${error.message} `,
+            status: 500,
+          });
       }
     }
   });

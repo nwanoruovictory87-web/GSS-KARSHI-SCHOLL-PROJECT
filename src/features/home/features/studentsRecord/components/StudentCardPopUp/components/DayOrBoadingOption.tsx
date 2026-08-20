@@ -1,28 +1,42 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 function DayOrBoadingOption({
   setDay,
   setBording,
+  readOnly,
+  day,
+  bording,
 }: {
   setDay: React.Dispatch<React.SetStateAction<boolean>>;
   setBording: React.Dispatch<React.SetStateAction<boolean>>;
+  readOnly: boolean;
+  day: boolean;
+  bording: boolean;
 }): React.ReactElement {
   //
   const dayRef = useRef<HTMLInputElement | null>(null);
   const bordingRef = useRef<HTMLInputElement | null>(null);
   //
   function clickDay() {
-    if (!dayRef.current || !bordingRef.current) return;
+    if (!dayRef.current || !bordingRef.current || readOnly) return;
     setBording(false);
     setDay(true);
     bordingRef.current.checked = false;
   }
   function clickBording() {
-    if (!dayRef.current || !bordingRef.current) return;
+    if (!dayRef.current || !bordingRef.current || readOnly) return;
     setDay(false);
     setBording(true);
     dayRef.current.checked = false;
   }
-
+  //
+  useEffect(() => {
+    if (!dayRef.current || !bordingRef.current || !readOnly) return;
+    if (day) {
+      dayRef.current.checked = true;
+    } else {
+      bordingRef.current.checked = true;
+    }
+  }, []);
   return (
     <div className="w-fit h-fit pl-4 flex  gap-3  mt-2 p-2">
       <span className="flex items-center gap-1 ">

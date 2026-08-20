@@ -107,7 +107,7 @@ function AddStudents({
               createdAt: new Date(),
               __v: 0,
             };
-            console.log(data);
+            //console.log(data);
             return [data, ...prevRecords];
           });
         })
@@ -164,7 +164,13 @@ function AddStudents({
                 validateSaveInputFunc={validateSaveInputFunc}
               />
               {/**day or bording */}
-              <DayOrBoadingOption setDay={setDay} setBording={setBording} />
+              <DayOrBoadingOption
+                setDay={setDay}
+                setBording={setBording}
+                readOnly={false}
+                day={false}
+                bording={false}
+              />
               {/**action  */}
               <div className="mt-2 flex justify-center text-center">
                 <div className="flex flex-col gap-2">

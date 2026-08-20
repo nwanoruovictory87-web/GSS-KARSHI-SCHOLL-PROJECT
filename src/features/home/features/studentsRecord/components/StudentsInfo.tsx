@@ -3,6 +3,7 @@ import ViewStudent from "./StudentCardPopUp/ViewStudent";
 import LoadingAnimation from "../../../shared/LoadingAnimation";
 import { deleteStudent } from "../api/StudentsRecordApi";
 import { StudentsRecordStorage } from "../../../../../storage/StudentsRecordStorage";
+import noProfileImg from "/assets/student-male.png";
 function StudentsInfo({
   image,
   firstName,
@@ -57,7 +58,12 @@ function StudentsInfo({
     <>
       <section className="w-full h-15  grid grid-cols-[28%_25%_12%_10%_10%_15%] border border-body-color">
         <span className="flex gap-4 pl-2 p-1 items-center font-medium border-r border-body-color ">
-          <span className="min-w-13 min-h-13 max-w-13 max-h-13 rounded-full bg-gray-200"></span>
+          <span className="min-w-13 min-h-13 max-w-13 max-h-13 rounded-full ">
+            <img
+              className="w-full h-full rounded-full"
+              src={image ? image : noProfileImg}
+            ></img>
+          </span>
           <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
             {firstName} {middleName} {lastName}
           </h5>
