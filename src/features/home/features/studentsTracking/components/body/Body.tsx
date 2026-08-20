@@ -34,8 +34,10 @@ interface TrackingData {
 }
 function Body({
   trackingData,
+  isLoading,
 }: {
   trackingData: TrackingData | null;
+  isLoading: boolean;
 }): React.ReactElement {
   return (
     <article className="w-full min-h-142 h-full  flex gap-7 ">
@@ -51,7 +53,7 @@ function Body({
           image={trackingData.image}
         />
       ) : (
-        <LStudentInfo />
+        <LStudentInfo isLoading={isLoading} />
       )}
       <section className="w-[70%] h-full rounded-xl flex flex-col gap-7 ">
         <Map
@@ -67,9 +69,13 @@ function Body({
               batteryPercent={trackingData.watchInfo.batteryPercent}
             />
           ) : (
-            <LWacthInfo />
+            <LWacthInfo isLoading={isLoading} />
           )}
-          {trackingData ? <AiOverview /> : <LAiOverview />}
+          {trackingData ? (
+            <AiOverview />
+          ) : (
+            <LAiOverview isLoading={isLoading} />
+          )}
         </article>
       </section>
     </article>

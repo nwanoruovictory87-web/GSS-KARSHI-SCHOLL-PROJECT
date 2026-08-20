@@ -32,16 +32,18 @@ interface TrackingData {
 function StudentsTracking(): React.ReactElement {
   const [trackingIDInput, setTrackingIdInput] = useState<string>("");
   const [trackingData, setTrackingData] = useState<TrackingData | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   //
   function getTrackingData() {
-    console.log(trackingIDInput);
+    setIsLoading(true);
     getStudentWithIDTrackingData(trackingIDInput.trim())
       .then((data) => {
-        console.log(data);
         setTrackingData(data.record);
+        setIsLoading(false);
       })
       .catch((error) => {
         alert(error);
+        setIsLoading(false);
       });
   }
   return (
@@ -52,7 +54,7 @@ function StudentsTracking(): React.ReactElement {
         setInput={setTrackingIdInput}
       />
       <div className="mt-7 w-full h-full  relative mb-10 ">
-        <Body trackingData={trackingData} />
+        <Body trackingData={trackingData} isLoading={isLoading} />
       </div>
     </div>
   );
