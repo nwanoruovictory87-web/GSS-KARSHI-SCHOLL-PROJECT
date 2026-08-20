@@ -78,3 +78,17 @@ input:focus {
     width: 85%;
   }
 }
+.tr-skeleton {
+  animation: tr-animate 1s infinite linear;
+}
+@keyframes tr-animate {
+  0% {
+    background-color: rgb(21, 18, 54);
+  }
+  90% {
+    background-color: rgba(20, 17, 59, 0.138);
+  }
+  100% {
+    background-color: rgb(21, 18, 54);
+  }
+}
