@@ -26,17 +26,21 @@ function List(): React.ReactElement {
   const [studentsRecordsList, setStudentsRecirdList] = useState<
     StudentsData[] | []
   >([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   //
 
   useEffect(() => {
     if (records.length > 0) return;
+    setIsLoading(true);
     getStudentsRecords()
       .then((data) => {
         setRecords(data.records);
+        setIsLoading(false);
         //console.log(data);
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false);
       });
   }, []);
   //
@@ -49,29 +53,40 @@ function List(): React.ReactElement {
     <div className=" w-full h-full overflow-y-scroll pb-12 ">
       {/** */}
       <div className="w-full flex flex-col  border-r border-r-body-color border-l border-l-body-coborder-r-body-color ">
-        {studentsRecordsList.length != 0
-          ? studentsRecordsList.map((data: StudentsData) => {
-              return (
-                <StudentsInfo
-                  image={data.image}
-                  firstName={data.firstName}
-                  middleName={data.middleName}
-                  lastName={data.lastName}
-                  house={data.house}
-                  trackingID={data.trackingID}
-                  gender={data.gender}
-                  year={data.studentYear}
-                  key={data.trackingID}
-                  dateOfBirth={data.dateOfBirth}
-                  day={data.dayStudent > 0 ? true : false}
-                  bording={data.bordingStudent > 0 ? true : false}
-                  age={data.age}
-                />
-              );
-            })
-          : Array.from({ length: 40 }).map(() => {
-              return <LStudentInfo />;
-            })}
+        {studentsRecordsList.length != 0 ? (
+          studentsRecordsList.map((data: StudentsData) => {
+            return (
+              <StudentsInfo
+                image={data.image}
+                firstName={data.firstName}
+                middleName={data.middleName}
+                lastName={data.lastName}
+                house={data.house}
+                trackingID={data.trackingID}
+                gender={data.gender}
+                year={data.studentYear}
+                key={data.trackingID}
+                dateOfBirth={data.dateOfBirth}
+                day={data.dayStudent > 0 ? true : false}
+                bording={data.bordingStudent > 0 ? true : false}
+                age={data.age}
+              />
+            );
+          })
+        ) : isLoading ? (
+          Array.from({ length: 40 }).map(() => {
+            return <LStudentInfo />;
+          })
+        ) : (
+          <div className="w-full h-full flex justify-center items-center mt-[12%]">
+            <div className="text-center">
+              <i className="fa fa-book text-[130px] text-body-color"></i>
+              <h5 className="font-sans text-[25px] mt-1 font-medium text-body-color">
+                No Reords Found
+              </h5>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
