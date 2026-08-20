@@ -69,7 +69,7 @@ function Body({
           ) : (
             <LWacthInfo />
           )}
-          <AiOverview />
+          {trackingData ? <AiOverview /> : <LAiOverview />}
         </article>
       </section>
     </article>
