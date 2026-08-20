@@ -35,7 +35,9 @@ function StudentsTracking(): React.ReactElement {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   //
   function getTrackingData() {
+    if (isLoading) return;
     setIsLoading(true);
+    setTrackingData(null);
     getStudentWithIDTrackingData(trackingIDInput.trim())
       .then((data) => {
         setTrackingData(data.record);
