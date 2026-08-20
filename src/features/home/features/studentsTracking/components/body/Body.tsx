@@ -48,6 +48,7 @@ function Body({
           dateOfBirth={trackingData.dateOfBirth}
           gender={trackingData.gender}
           house={trackingData.house}
+          image={trackingData.image}
         />
       ) : (
         <LStudentInfo />
@@ -55,7 +56,15 @@ function Body({
       <section className="w-[70%] h-full rounded-xl flex flex-col gap-7 ">
         <Map />
         <article className="w-full h-[40%]  flex gap-7">
-          <WacthInfo />
+          {trackingData ? (
+            <WacthInfo
+              watchDate={trackingData.watchInfo.watchDate}
+              watchTime={trackingData.watchInfo.watchTime}
+              batteryPercent={trackingData.watchInfo.batteryPercent}
+            />
+          ) : (
+            <LWacthInfo />
+          )}
           <StudentsLocation />
         </article>
       </section>

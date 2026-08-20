@@ -8,6 +8,7 @@ function StudentInfo({
   dateOfBirth,
   gender,
   house,
+  image,
 }: {
   firstName: string;
   middleName: string;
@@ -16,6 +17,7 @@ function StudentInfo({
   dateOfBirth: string;
   gender: string;
   house: string;
+  image: string | null;
 }): React.ReactElement {
   return (
     <section className="w-[40%] overflow-hidden max-w-100 h-full  rounded-xl bg-pramary-dark-blue border border-text-color">
@@ -32,6 +34,7 @@ function StudentInfo({
           dateOfBirth={dateOfBirth}
           gender={gender}
           house={house}
+          image={image}
         />
       </div>
       {/**bording master info */}

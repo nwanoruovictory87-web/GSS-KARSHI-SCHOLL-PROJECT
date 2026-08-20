@@ -92,3 +92,17 @@ input:focus {
     background-color: rgb(21, 18, 54);
   }
 }
+.tr-skeleton-text {
+  animation: tr-animate-2 1s infinite linear;
+}
+@keyframes tr-animate-2 {
+  0% {
+    color: rgb(21, 18, 54);
+  }
+  90% {
+    color: rgba(20, 17, 59, 0.138);
+  }
+  100% {
+    color: rgb(21, 18, 54);
+  }
+}
