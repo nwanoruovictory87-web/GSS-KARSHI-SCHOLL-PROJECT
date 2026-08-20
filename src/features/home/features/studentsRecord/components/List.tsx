@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { StudentsRecordStorage } from "../../../../../storage/StudentsRecordStorage";
 import StudentsInfo from "./StudentsInfo";
+import LStudentInfo from "./LStudentsInfo";
 import { getStudentsRecords } from "../api/StudentsRecordApi";
 interface StudentsData {
   _id: string;
@@ -48,25 +49,29 @@ function List(): React.ReactElement {
     <div className=" w-full h-full overflow-y-scroll pb-12 ">
       {/** */}
       <div className="w-full flex flex-col  border-r border-r-body-color border-l border-l-body-coborder-r-body-color ">
-        {studentsRecordsList.map((data: StudentsData) => {
-          return (
-            <StudentsInfo
-              image={data.image}
-              firstName={data.firstName}
-              middleName={data.middleName}
-              lastName={data.lastName}
-              house={data.house}
-              trackingID={data.trackingID}
-              gender={data.gender}
-              year={data.studentYear}
-              key={data.trackingID}
-              dateOfBirth={data.dateOfBirth}
-              day={data.dayStudent > 0 ? true : false}
-              bording={data.bordingStudent > 0 ? true : false}
-              age={data.age}
-            />
-          );
-        })}
+        {setStudentsRecirdList.length != 0
+          ? studentsRecordsList.map((data: StudentsData) => {
+              return (
+                <StudentsInfo
+                  image={data.image}
+                  firstName={data.firstName}
+                  middleName={data.middleName}
+                  lastName={data.lastName}
+                  house={data.house}
+                  trackingID={data.trackingID}
+                  gender={data.gender}
+                  year={data.studentYear}
+                  key={data.trackingID}
+                  dateOfBirth={data.dateOfBirth}
+                  day={data.dayStudent > 0 ? true : false}
+                  bording={data.bordingStudent > 0 ? true : false}
+                  age={data.age}
+                />
+              );
+            })
+          : Array.from({ length: 40 }).map(() => {
+              return <LStudentInfo />;
+            })}
       </div>
     </div>
   );
