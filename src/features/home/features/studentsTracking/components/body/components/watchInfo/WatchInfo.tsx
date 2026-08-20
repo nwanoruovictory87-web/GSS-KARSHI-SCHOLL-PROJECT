@@ -1,4 +1,4 @@
-function WacthInfo(): React.ReactElement {
+function WatchInfo(): React.ReactElement {
   return (
     <section className="w-[50%] border border-text-color h-full bg-pramary-dark-blue rounded-xl">
       <span className="w-full h-7 bg-text-color  rounded-t-xl flex justify-center">
@@ -9,4 +9,4 @@ function WacthInfo(): React.ReactElement {
     </section>
   );
 }
-export default WacthInfo;
+export default WatchInfo;

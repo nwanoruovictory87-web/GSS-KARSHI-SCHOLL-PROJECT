@@ -32,7 +32,7 @@ function List(): React.ReactElement {
     getStudentsRecords()
       .then((data) => {
         setRecords(data.records);
-        console.log(data);
+        //console.log(data);
       })
       .catch((error) => {
         console.log(error);
