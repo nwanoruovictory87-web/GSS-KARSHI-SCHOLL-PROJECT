@@ -1,4 +1,5 @@
 import { createHashRouter, RouterProvider } from "react-router-dom";
+import { StudentsRecordProvider } from "../storage/StudentsRecordStorage";
 import Home from "../features/home/Home";
 function Routes() {
   const routes = createHashRouter([
@@ -7,7 +8,11 @@ function Routes() {
       children: [
         {
           path: "/",
-          element: <Home />,
+          element: (
+            <StudentsRecordProvider>
+              <Home />
+            </StudentsRecordProvider>
+          ),
         },
       ],
     },

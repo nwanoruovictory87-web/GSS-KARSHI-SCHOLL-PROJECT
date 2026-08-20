@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { StudentsRecordStorage } from "../../../../../storage/StudentsRecordStorage";
 import StudentsInfo from "./StudentsInfo";
 import { getStudentsRecords } from "../api/StudentsRecordApi";
 interface StudentsData {
@@ -19,14 +20,18 @@ interface StudentsData {
   __v: number;
 }
 function List(): React.ReactElement {
-  const [studentsRecordsList, setStudentsRecirdList] = useState<StudentsData[]>(
-    [],
-  );
+  const studentsRecord = StudentsRecordStorage();
+  const { records, setRecords } = studentsRecord;
+  const [studentsRecordsList, setStudentsRecirdList] = useState<
+    StudentsData[] | []
+  >([]);
   //
+
   useEffect(() => {
+    if (records.length > 0) return;
     getStudentsRecords()
       .then((data) => {
-        setStudentsRecirdList(data.records);
+        setRecords(data.records);
         console.log(data);
       })
       .catch((error) => {
@@ -34,6 +39,11 @@ function List(): React.ReactElement {
       });
   }, []);
   //
+  useEffect(() => {
+    (() => {
+      setStudentsRecirdList(records);
+    })();
+  }, [records, records.length]);
   return (
     <div className=" w-full h-full overflow-y-scroll pb-12 ">
       {/** */}

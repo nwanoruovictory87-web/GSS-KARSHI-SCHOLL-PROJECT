@@ -1,5 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { useSearchParams } from "react-router-dom";
+
 //static
 import Top from "./shared/Top";
 import LeftNavigationBar from "./shared/LeftNavigationBar";

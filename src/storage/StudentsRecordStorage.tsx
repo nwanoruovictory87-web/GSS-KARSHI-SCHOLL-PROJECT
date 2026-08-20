@@ -8,7 +8,6 @@ interface StudentsData {
   dateOfBirth: string;
   gender: string;
   house: string;
-  year: string;
   dayStudent: number;
   bordingStudent: number;
   trackingID: string;

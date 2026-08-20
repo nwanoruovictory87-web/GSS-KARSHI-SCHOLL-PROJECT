@@ -2,6 +2,7 @@ import { useState } from "react";
 import ViewStudent from "./StudentCardPopUp/ViewStudent";
 import LoadingAnimation from "../../../shared/LoadingAnimation";
 import { deleteStudent } from "../api/StudentsRecordApi";
+import { StudentsRecordStorage } from "../../../../../storage/StudentsRecordStorage";
 function StudentsInfo({
   image,
   firstName,
@@ -29,6 +30,8 @@ function StudentsInfo({
   age: string;
   dateOfBirth: string;
 }): React.ReactElement {
+  const studentsRecord = StudentsRecordStorage();
+  const { setRecords } = studentsRecord;
   const [viewMode, setViewMode] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   //
@@ -38,6 +41,11 @@ function StudentsInfo({
       .then((data) => {
         alert(data.message);
         setIsLoading(false);
+        setRecords((prevRecords) => {
+          return prevRecords.filter((data) => {
+            if (data.trackingID != trackingID) return data;
+          });
+        });
       })
       .catch((error) => {
         console.log(error);

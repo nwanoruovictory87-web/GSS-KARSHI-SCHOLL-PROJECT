@@ -6,6 +6,7 @@ import {
 import StudentInfo from "./components/StudentInfo";
 import DayOrBoadingOption from "./components/DayOrBoadingOption";
 import LoadingAnimation from "../../../../shared/LoadingAnimation";
+import { StudentsRecordStorage } from "../../../../../../storage/StudentsRecordStorage";
 interface StudentsInfo {
   firstName: string;
   middleName: string;
@@ -37,6 +38,8 @@ function AddStudents({
   control: () => void;
   readOnly: number;
 }): React.ReactElement {
+  const studentsRecord = StudentsRecordStorage();
+  const { setRecords } = studentsRecord;
   const [validateInput, setValidateInput] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [trackingID, setTrackingID] = useState<string>(
@@ -86,6 +89,27 @@ function AddStudents({
           alert(res.message);
           setLoadingAnimation(false);
           control();
+          setRecords((prevRecords) => {
+            const data = {
+              _id: "",
+              firstName: studentInfo.firstName,
+              middleName: studentInfo.middleName,
+              lastName: studentInfo.lastName,
+              age: studentInfo.age,
+              dateOfBirth: studentInfo.dateOfBirth,
+              gender: studentInfo.gender,
+              house: studentInfo.house,
+              dayStudent: studentInfo.dayStudent,
+              bordingStudent: studentInfo.bordingStudent,
+              trackingID: studentInfo.trackingID,
+              image: studentInfo.image,
+              studentYear: studentInfo.year,
+              createdAt: new Date(),
+              __v: 0,
+            };
+            console.log(data);
+            return [data, ...prevRecords];
+          });
         })
         .catch((error) => {
           console.log(error);
