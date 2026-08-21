@@ -71,6 +71,9 @@ function AllStudentsTracking(): React.ReactElement {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            <Marker position={[latitude, longtitude]}>
+              <Popup>Admin </Popup>
+            </Marker>
             {studentsMarker.length != 0 &&
               studentsMarker.map((e, i) => {
                 return (
