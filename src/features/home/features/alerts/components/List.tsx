@@ -1,4 +1,5 @@
 import StudentsAlertInfo from "./StudentsAlertInfo";
+import LStudentsAlertInfo from "./LStudentsAlertInfo";
 function List() {
   return (
     <div className=" w-full h-full overflow-y-auto pb-12 ">
@@ -89,14 +90,14 @@ function List() {
           </span>
         </section>
         {/**test */}
-        <StudentsAlertInfo />
-        <StudentsAlertInfo />
-        <StudentsAlertInfo />
-        <StudentsAlertInfo />
-        <StudentsAlertInfo />
-        <StudentsAlertInfo />
-        <StudentsAlertInfo />
-        <StudentsAlertInfo />
+        <LStudentsAlertInfo />
+        <LStudentsAlertInfo />
+        <LStudentsAlertInfo />
+        <LStudentsAlertInfo />
+        <LStudentsAlertInfo />
+        <LStudentsAlertInfo />
+        <LStudentsAlertInfo />
+        <LStudentsAlertInfo />
       </div>
     </div>
   );
