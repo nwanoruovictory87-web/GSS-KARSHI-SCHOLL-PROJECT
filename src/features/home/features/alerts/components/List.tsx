@@ -1,103 +1,96 @@
+import { useState, useEffect } from "react";
 import StudentsAlertInfo from "./StudentsAlertInfo";
-import LStudentsAlertInfo from "./LStudentsAlertInfo";
+import { SocketApi } from "../../../../../storage/Socket";
+interface TrackingData {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  age: string;
+  dateOfBirth: string;
+  gender: string;
+  house: string;
+  year: string;
+  dayStudent: number;
+  bordingStudent: number;
+  image: null;
+  trackingID: string;
+  latitude: number;
+  longitude: number;
+  accuracy: number;
+  lastTransmistedDate: string;
+  trackingState: number;
+  watchInfo: {
+    batteryPercent: string;
+    watchTime: string;
+    watchDate: Date;
+  };
+  locationInfo: {
+    locationAccuracy: number;
+    lastTransmistedDate: Date;
+    lastThreeKnownLocation: any[];
+  };
+}
 function List() {
+  const socketApi = SocketApi();
+  const { socket } = socketApi;
+  const [alertList, setAlertList] = useState<TrackingData[] | []>([]);
+  //send get alertList requst ping
+  useEffect(() => {
+    if (!socket) return;
+    //call send getAlertList every 30s
+    const getAlertListTimer = setInterval(() => {
+      socket.emit("get-students-alert");
+    }, 30000); // every 30s
+    socket.emit("get-students-alert");
+    //clean up
+    return () => {
+      clearInterval(getAlertListTimer);
+    };
+  }, []);
+  //listen on students alert list
+  useEffect(() => {
+    if (!socket) return;
+    const receiveAlertFunc = (list: TrackingData[] | []) => {
+      console.log(list);
+      setAlertList(list);
+    };
+    socket.on("all-students-alert", receiveAlertFunc);
+    //clean up
+    return () => {
+      socket.off("all-students-alert", receiveAlertFunc);
+    };
+  }, []);
   return (
-    <div className=" w-full h-full overflow-y-auto pb-12 ">
+    <div className=" w-full h-full overflow-y-scroll pb-12 ">
       {/** */}
       <div className="w-full flex flex-col  border-r border-r-body-color border-l border-l-body-coborder-r-body-color ">
-        <StudentsAlertInfo />
-        {/**test */}
-        <section className="w-full h-16  grid grid-cols-[25%_25%_12%_10%_15%_7%_6%]  border border-body-color">
-          <span className="flex gap-4 pl-2 p-1 items-center font-medium border-r border-body-color ">
-            <span className="min-w-13 min-h-13 max-w-13 max-h-13 rounded-full bg-gray-200"></span>
-            <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-              Victory Nwanoruo
-            </h5>
-          </span>
-          <span className="flex pl-2  items-center font-medium border-r border-body-color">
-            <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-              7348b7c337btv357n,8u
-            </h5>
-          </span>
-          <span className="flex pl-2  items-center font-medium border-r border-body-color">
-            <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#ffa600e5]">
-              <i className="fa fa-triangle-exclamation"></i>
-              <h5 className=" font-medium min16Max18px line-clamp-1">
-                warning
+        {alertList.length != 0 ? (
+          alertList.map((data) => {
+            return (
+              <StudentsAlertInfo
+                image={data.image}
+                firstName={data.firstName}
+                middleName={data.middleName}
+                lastName={data.lastName}
+                trackingID={data.trackingID}
+                house={data.house}
+                lastTransmistedDate={data.lastTransmistedDate}
+                trackingState={data.trackingState}
+                watchTime={data.watchInfo.watchTime}
+                key={data.trackingID}
+              />
+            );
+          })
+        ) : (
+          <div className="w-full h-full flex justify-center items-center mt-[12%]">
+            <div className="text-center">
+              <i className="fa fa-book text-[130px] text-body-color"></i>
+              <h5 className="font-sans text-[25px] mt-1 font-medium text-body-color">
+                No Reords Found
               </h5>
-            </span>
-          </span>
-          <span className="flex pl-2  items-center font-medium border-r border-body-color">
-            <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-              Garki
-            </h5>
-          </span>
-          <span className="flex pl-2  items-center font-medium border-r border-body-color">
-            <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-              04/07/2024
-            </h5>
-          </span>
-          <span className="flex pl-2  items-center font-medium border-r border-body-color">
-            <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-              4PM
-            </h5>
-          </span>
-          <span className="flex pointer pl-2  justify-center items-center font-medium ">
-            <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#4b4be9]">
-              <i className="fa fa-location"></i>
-            </span>
-          </span>
-        </section>
-        {/**test */}
-        {/**test */}
-        <section className="w-full h-16  grid grid-cols-[25%_25%_12%_10%_15%_7%_6%]  border border-body-color">
-          <span className="flex gap-4 pl-2 p-1 items-center font-medium border-r border-body-color ">
-            <span className="min-w-13 min-h-13 max-w-13 max-h-13 rounded-full bg-gray-200"></span>
-            <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-              Victory Nwanoruo
-            </h5>
-          </span>
-          <span className="flex pl-2  items-center font-medium border-r border-body-color">
-            <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-              7348b7c337btv357n,8u
-            </h5>
-          </span>
-          <span className="flex pl-2  items-center font-medium border-r border-body-color">
-            <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#ff0000d2]">
-              <i className="fa fa-xmark"></i>
-              <h5 className=" font-medium min16Max18px line-clamp-1">panic</h5>
-            </span>
-          </span>
-          <span className="flex pl-2  items-center font-medium border-r border-body-color">
-            <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-              Garki
-            </h5>
-          </span>
-          <span className="flex w-full pl-2  items-center font-medium border-r border-body-color">
-            <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-              04/07/2024
-            </h5>
-          </span>
-          <span className="flex pl-2  items-center font-medium border-r border-body-color">
-            <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-              4PM
-            </h5>
-          </span>
-          <span className="flex pointer pl-2  justify-center items-center font-medium ">
-            <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#4b4be9]">
-              <i className="fa fa-location"></i>
-            </span>
-          </span>
-        </section>
-        {/**test */}
-        <LStudentsAlertInfo />
-        <LStudentsAlertInfo />
-        <LStudentsAlertInfo />
-        <LStudentsAlertInfo />
-        <LStudentsAlertInfo />
-        <LStudentsAlertInfo />
-        <LStudentsAlertInfo />
-        <LStudentsAlertInfo />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -5,11 +5,42 @@ interface GpsPosition {
   longitude: number;
   trackingID: string;
 }
+interface TrackingData {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  age: string;
+  dateOfBirth: string;
+  gender: string;
+  house: string;
+  year: string;
+  dayStudent: number;
+  bordingStudent: number;
+  image: null;
+  trackingID: string;
+  latitude: number;
+  longitude: number;
+  accuracy: number;
+  lastTransmistedDate: string;
+  trackingState: number;
+  watchInfo: {
+    batteryPercent: string;
+    watchTime: string;
+    watchDate: Date;
+  };
+  locationInfo: {
+    locationAccuracy: number;
+    lastTransmistedDate: Date;
+    lastThreeKnownLocation: any[];
+  };
+}
 interface ListenEvents {
   "all-students-location": (list: GpsPosition[] | []) => void;
+  "all-students-alert": (alertsRecord: TrackingData[] | []) => void;
 }
 interface EmitEvents {
   "get-students-location": () => void;
+  "get-students-alert": () => void;
 }
 type AppSocket = Socket<ListenEvents, EmitEvents>;
 interface SocketInstanceApi {

@@ -18,8 +18,8 @@ function Filter(): React.ReactElement {
       </section>
       <section className="w-40 h-12 bg-pramary-dark-blue rounded-xl flex gap-2 items-center font-semibold  text-text-color pl-1 pr-1">
         <span className="flex w-fit gap-1 items-center">
-          <i className="fa fa-alert min20Max24px -mr-1"></i>
-          <h5>Wacth State</h5>
+          <i className="fa fa-stopwatch min20Max24px -mr-1"></i>
+          <h5>Watch State</h5>
           <i className="fa fa-angle-down pointer"></i>
         </span>
       </section>

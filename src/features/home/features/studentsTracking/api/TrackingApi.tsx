@@ -14,6 +14,8 @@ interface TrackingData {
   latitude: number;
   longitude: number;
   accuracy: number;
+  lastTransmistedDate: string;
+  trackingState: number;
   watchInfo: {
     batteryPercent: string;
     watchTime: string;

@@ -1,36 +1,82 @@
-function StudentsAlertInfo(): React.ReactElement {
+import noProfileImg from "/assets/student-male.png";
+function StudentsAlertInfo({
+  image,
+  firstName,
+  middleName,
+  lastName,
+  trackingID,
+  house,
+  lastTransmistedDate,
+  trackingState,
+  watchTime,
+}: {
+  image: string | null;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  trackingID: string;
+  house: string;
+  watchTime: string;
+  trackingState: number;
+  lastTransmistedDate: string;
+}): React.ReactElement {
   return (
     <section className="w-full h-16  grid grid-cols-[25%_25%_12%_10%_15%_7%_6%] border border-body-color">
       <span className="flex gap-4 pl-2 p-1 items-center font-medium border-r border-body-color ">
-        <span className="min-w-13 min-h-13 max-w-13 max-h-13 rounded-full bg-gray-200"></span>
-        <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-          Victory Nwanoruo
-        </h5>
-      </span>
-      <span className="flex pl-2  items-center font-medium border-r border-body-color">
-        <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-          7348b7c337btv357n,8u
-        </h5>
-      </span>
-      <span className="flex pl-2  items-center font-medium border-r border-body-color">
-        <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#0da70dd3]">
-          <i className="fa fa-check"></i>
-          <h5 className=" font-medium min16Max18px line-clamp-1">stable</h5>
+        <span className="min-w-13 min-h-13 max-w-13 max-h-13 rounded-full ">
+          <img
+            className="w-full h-full rounded-full"
+            src={image ? image : noProfileImg}
+          ></img>
         </span>
-      </span>
-      <span className="flex pl-2  items-center font-medium border-r border-body-color">
         <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-          Garki
+          {firstName} {middleName} {lastName}
         </h5>
       </span>
       <span className="flex pl-2  items-center font-medium border-r border-body-color">
         <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-          04/07/2024
+          {trackingID}
+        </h5>
+      </span>
+      <span className="flex pl-2  items-center font-medium border-r border-body-color">
+        {trackingState === 0 && (
+          <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#8d0da7d3]">
+            <i className="fa fa-qustion"></i>
+            <h5 className=" font-medium min16Max18px line-clamp-1">unkown</h5>
+          </span>
+        )}
+        {trackingState === 1 && (
+          <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#0da70dd3]">
+            <i className="fa fa-check"></i>
+            <h5 className=" font-medium min16Max18px line-clamp-1">stable</h5>
+          </span>
+        )}
+        {trackingState === 2 && (
+          <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#ffa600e5]">
+            <i className="fa fa-triangle-exclamation"></i>
+            <h5 className=" font-medium min16Max18px line-clamp-1">warning</h5>
+          </span>
+        )}
+        {trackingState === 3 && (
+          <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#ff0000d2]">
+            <i className="fa fa-xmark"></i>
+            <h5 className=" font-medium min16Max18px line-clamp-1">panic</h5>
+          </span>
+        )}
+      </span>
+      <span className="flex pl-2  items-center font-medium border-r border-body-color">
+        <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
+          {house}
         </h5>
       </span>
       <span className="flex pl-2  items-center font-medium border-r border-body-color">
         <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
-          4PM
+          {lastTransmistedDate}
+        </h5>
+      </span>
+      <span className="flex pl-2  items-center font-medium border-r border-body-color">
+        <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
+          {watchTime}
         </h5>
       </span>
       <span className="flex pointer pl-2  justify-center items-center font-medium ">
