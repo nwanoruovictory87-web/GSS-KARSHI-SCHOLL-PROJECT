@@ -17,6 +17,7 @@ function AllStudentsTracking(): React.ReactElement {
   const [isDevicesLocation, setIsDevicesLocation] = useState<boolean>(false);
   const [latitude, setLatitude] = useState<number>(0);
   const [longtitude, setLongtitude] = useState<number>(0);
+  const [studentsMarker, setStudentsMarker] = useState<GpsPosition[] | []>([]);
   //
   useEffect(() => {
     GetGpsLocation(
@@ -47,7 +48,7 @@ function AllStudentsTracking(): React.ReactElement {
   useEffect(() => {
     if (!socket) return;
     const allStudentsLocation = (list: GpsPosition[] | []) => {
-      console.log(list);
+      setStudentsMarker(list);
     };
     socket.on("all-students-location", allStudentsLocation);
     //
@@ -70,16 +71,17 @@ function AllStudentsTracking(): React.ReactElement {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[latitude, longtitude]}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
-            <Marker position={[8.9887, 7.5601]}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
+            {studentsMarker.length != 0 &&
+              studentsMarker.map((e, i) => {
+                return (
+                  <Marker
+                    position={[e.latitude, e.longitude]}
+                    key={`marker key - ${i}`}
+                  >
+                    <Popup>{e.trackingID}</Popup>
+                  </Marker>
+                );
+              })}
           </MapContainer>
         ) : (
           <span className="flex h-full justify-center items-center">
