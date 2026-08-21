@@ -19,10 +19,14 @@ interface StudentsData {
 interface Records {
   records: StudentsData[] | [];
   setRecords: React.Dispatch<React.SetStateAction<StudentsData[]>>;
+  trackingID: string | null;
+  setTrackingID: React.Dispatch<React.SetStateAction<string | null>>;
 }
 const StudentsContextData = createContext<Records>({
   records: [],
   setRecords: () => {},
+  trackingID: null,
+  setTrackingID: () => {},
 });
 export function StudentsRecordProvider({
   children,
@@ -30,11 +34,14 @@ export function StudentsRecordProvider({
   children: React.ReactNode;
 }) {
   const [records, setRecords] = useState<StudentsData[] | []>([]);
+  const [trackingID, setTrackingID] = useState<string | null>("");
   return (
     <StudentsContextData.Provider
       value={{
         records,
         setRecords,
+        trackingID,
+        setTrackingID,
       }}
     >
       {children}

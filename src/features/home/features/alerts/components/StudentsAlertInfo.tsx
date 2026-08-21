@@ -1,4 +1,6 @@
 import noProfileImg from "/assets/student-male.png";
+import { StudentsRecordStorage } from "../../../../../storage/StudentsRecordStorage";
+import { useSearchParams } from "react-router-dom";
 function StudentsAlertInfo({
   image,
   firstName,
@@ -20,6 +22,21 @@ function StudentsAlertInfo({
   trackingState: number;
   lastTransmistedDate: string;
 }): React.ReactElement {
+  const [_, setSearchParams] = useSearchParams();
+  const studentDataApi = StudentsRecordStorage();
+  const { setTrackingID } = studentDataApi;
+  //
+  function toTrackingPage(): void {
+    const page = "students/tracking";
+    setSearchParams({
+      section: `${page}`,
+    });
+  }
+  //
+  function trackStudent(): void {
+    setTrackingID(trackingID);
+    toTrackingPage();
+  }
   return (
     <section className="w-full h-16  grid grid-cols-[25%_25%_12%_10%_15%_7%_6%] border border-body-color">
       <span className="flex gap-4 pl-2 p-1 items-center font-medium border-r border-body-color ">
@@ -80,7 +97,10 @@ function StudentsAlertInfo({
         </h5>
       </span>
       <span className="flex pointer pl-2  pr-2 overflow-hidden  justify-center items-center font-medium ">
-        <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#4b4be9]">
+        <span
+          className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#4b4be9]"
+          onClick={trackStudent}
+        >
           <i className="fa fa-location"></i>
         </span>
       </span>

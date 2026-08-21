@@ -65,13 +65,6 @@ function StudentInfo(prop: ControlData): React.ReactElement {
       removeEmptyUXFallback(firstNameRef);
     }
     //
-    if (middleName.length < 3) {
-      activiteEmptyUXFallback(middleNameRef);
-      return false;
-    } else {
-      removeEmptyUXFallback(middleNameRef);
-    }
-    //
     if (lastName.length < 3) {
       activiteEmptyUXFallback(lastNameRef);
       return false;
