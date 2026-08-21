@@ -17,7 +17,6 @@ interface TrackingData {
   latitude: number;
   longitude: number;
   accuracy: number;
-  lastTransmistedDate: string;
   trackingState: number;
   watchInfo: {
     batteryPercent: string;
@@ -26,7 +25,7 @@ interface TrackingData {
   };
   locationInfo: {
     locationAccuracy: number;
-    lastTransmistedDate: Date;
+    lastTransmistedDate: string;
     lastThreeKnownLocation: any[];
   };
 }
@@ -74,7 +73,7 @@ function List() {
                 lastName={data.lastName}
                 trackingID={data.trackingID}
                 house={data.house}
-                lastTransmistedDate={data.lastTransmistedDate}
+                lastTransmistedDate={data.locationInfo.lastTransmistedDate}
                 trackingState={data.trackingState}
                 watchTime={data.watchInfo.watchTime}
                 key={data.trackingID}

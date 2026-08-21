@@ -33,15 +33,15 @@ function StudentsAlertInfo({
           {firstName} {middleName} {lastName}
         </h5>
       </span>
-      <span className="flex pl-2  items-center font-medium border-r border-body-color">
+      <span className="flex pl-2 pr-2  items-center font-medium border-r border-body-color">
         <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
           {trackingID}
         </h5>
       </span>
-      <span className="flex pl-2  items-center font-medium border-r border-body-color">
+      <span className="flex pl-2  pr-2 overflow-hidden  items-center font-medium border-r border-body-color">
         {trackingState === 0 && (
           <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#8d0da7d3]">
-            <i className="fa fa-qustion"></i>
+            <i className="fa fa-question"></i>
             <h5 className=" font-medium min16Max18px line-clamp-1">unkown</h5>
           </span>
         )}
@@ -64,22 +64,22 @@ function StudentsAlertInfo({
           </span>
         )}
       </span>
-      <span className="flex pl-2  items-center font-medium border-r border-body-color">
+      <span className="flex pl-2  pr-2 overflow-hidden  items-center font-medium border-r border-body-color">
         <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
           {house}
         </h5>
       </span>
-      <span className="flex pl-2  items-center font-medium border-r border-body-color">
+      <span className="flex pl-2  pr-2 overflow-hidden  items-center font-medium border-r border-body-color">
         <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
           {lastTransmistedDate}
         </h5>
       </span>
-      <span className="flex pl-2  items-center font-medium border-r border-body-color">
+      <span className="flex pl-2  pr-2 overflow-hidden  items-center font-medium border-r border-body-color">
         <h5 className="text-text-color font-medium min16Max18px line-clamp-1">
           {watchTime}
         </h5>
       </span>
-      <span className="flex pointer pl-2  justify-center items-center font-medium ">
+      <span className="flex pointer pl-2  pr-2 overflow-hidden  justify-center items-center font-medium ">
         <span className="flex items-center text-black p-2 w-fit h-8 rounded-xl bg-[#4b4be9]">
           <i className="fa fa-location"></i>
         </span>

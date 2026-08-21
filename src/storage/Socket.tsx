@@ -21,7 +21,6 @@ interface TrackingData {
   latitude: number;
   longitude: number;
   accuracy: number;
-  lastTransmistedDate: string;
   trackingState: number;
   watchInfo: {
     batteryPercent: string;
@@ -30,7 +29,7 @@ interface TrackingData {
   };
   locationInfo: {
     locationAccuracy: number;
-    lastTransmistedDate: Date;
+    lastTransmistedDate: string;
     lastThreeKnownLocation: any[];
   };
 }

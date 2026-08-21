@@ -259,7 +259,7 @@ function StudentInfo(prop: ControlData): React.ReactElement {
           >
             <input
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
-              placeholder="Exp 22...."
+              placeholder="Exp 14...."
               value={age}
               onChange={(e) => {
                 if (prop.readonly === 1) return;
@@ -273,7 +273,7 @@ function StudentInfo(prop: ControlData): React.ReactElement {
           >
             <input
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
-              placeholder="Exp 14/07/2004...."
+              placeholder="Exp 14/07/2012...."
               value={dateOfBirth}
               onChange={(e) => {
                 if (prop.readonly === 1) return;
@@ -330,7 +330,7 @@ function StudentInfo(prop: ControlData): React.ReactElement {
           >
             <input
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
-              placeholder="2020...."
+              placeholder="2026...."
               value={year}
               onChange={(e) => {
                 if (prop.readonly === 1) return;
