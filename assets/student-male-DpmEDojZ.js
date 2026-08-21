@@ -1,0 +1,1 @@
+var e=`/GSS-KARSHI-SCHOLL-PROJECT/assets/student-male.png`;export{e as t};
