@@ -195,7 +195,7 @@ function StudentInfo(prop: ControlData): React.ReactElement {
           >
             <input
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
-              placeholder="Exp Victory...."
+              placeholder=" Victory...."
               value={firstName}
               onChange={(e) => {
                 if (prop.readonly === 1) return;
@@ -209,7 +209,7 @@ function StudentInfo(prop: ControlData): React.ReactElement {
           >
             <input
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
-              placeholder="Exp Chibuzo...."
+              placeholder=" Chibuzo...."
               value={middleName}
               onChange={(e) => {
                 if (prop.readonly === 1) return;
@@ -223,7 +223,7 @@ function StudentInfo(prop: ControlData): React.ReactElement {
           >
             <input
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
-              placeholder="Exp Nwanoruo...."
+              placeholder=" Nwanoruo...."
               value={lastName}
               onChange={(e) => {
                 if (prop.readonly === 1) return;
@@ -252,7 +252,7 @@ function StudentInfo(prop: ControlData): React.ReactElement {
           >
             <input
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
-              placeholder="Exp 14...."
+              placeholder=" 14...."
               value={age}
               onChange={(e) => {
                 if (prop.readonly === 1) return;
@@ -266,7 +266,7 @@ function StudentInfo(prop: ControlData): React.ReactElement {
           >
             <input
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
-              placeholder="Exp 14/07/2012...."
+              placeholder=" DD/MM/YY...."
               value={dateOfBirth}
               onChange={(e) => {
                 if (prop.readonly === 1) return;
@@ -280,7 +280,7 @@ function StudentInfo(prop: ControlData): React.ReactElement {
           >
             <input
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
-              placeholder="Exp Male/Female...."
+              placeholder=" Male/Female...."
               value={gender}
               onChange={(e) => {
                 if (prop.readonly === 1) return;
