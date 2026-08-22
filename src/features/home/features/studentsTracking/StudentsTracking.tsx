@@ -24,7 +24,7 @@ interface TrackingData {
   watchInfo: {
     batteryPercent: string;
     watchTime: string;
-    watchDate: Date;
+    watchDate: string;
   };
   locationInfo: {
     locationAccuracy: number;

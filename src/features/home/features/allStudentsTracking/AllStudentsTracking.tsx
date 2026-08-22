@@ -1,4 +1,10 @@
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  LayersControl,
+} from "react-leaflet";
 import { useState, useEffect } from "react";
 import { GetGpsLocation } from "../../shared/Gps";
 import { SocketApi } from "../../../../storage/Socket";
@@ -67,14 +73,39 @@ function AllStudentsTracking(): React.ReactElement {
             scrollWheelZoom={false}
             style={{ width: "100%", height: "100%" }}
           >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+            {/* LayersControl lets you toggle between Google Maps and OpenStreetMap */}
+            <LayersControl position="topright">
+              {/* 1. Google Maps Detailed Street View */}
+              <LayersControl.BaseLayer
+                checked
+                name="Google Maps (Detailed Streets)"
+              >
+                <TileLayer
+                  attribution='&copy; <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">Google Maps</a>'
+                  // FIX: Replaced the broken pattern with the fully formed Google structure
+                  url="https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
+                  subdomains={["mt0", "mt1", "mt2", "mt3"]}
+                  maxZoom={20}
+                />
+              </LayersControl.BaseLayer>
+
+              {/* 2. OpenStreetMap fallback */}
+              <LayersControl.BaseLayer name="OpenStreetMap">
+                <TileLayer
+                  attribution='&copy; <a href="https://openstreetmap.org" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors'
+                  // FIX: Replaced the broken pattern with the official OSM URL structure
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+              </LayersControl.BaseLayer>
+            </LayersControl>
+
+            {/* Admin Marker */}
             <Marker position={[latitude, longtitude]}>
               <Popup>Admin </Popup>
             </Marker>
-            {studentsMarker.length != 0 &&
+
+            {/* Student Markers */}
+            {studentsMarker.length !== 0 &&
               studentsMarker.map((e, i) => {
                 return (
                   <Marker
