@@ -5,9 +5,23 @@ import {
   TileLayer,
   LayersControl,
 } from "react-leaflet";
-
+import L from "leaflet";
 import gpsLoading from "/assets/PlanetWorldPreloader.gif";
 import "leaflet/dist/leaflet.css";
+
+// 1. Import the actual image files from your installed leaflet package
+import markerIconPng from "leaflet/dist/images/marker-icon.png";
+import markerIconRetinaPng from "leaflet/dist/images/marker-icon-2x.png";
+import markerShadowPng from "leaflet/dist/images/marker-shadow.png";
+
+// 2. Safely apply them to Leaflet's defaults
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconUrl: markerIconPng,
+  iconRetinaUrl: markerIconRetinaPng,
+  shadowUrl: markerShadowPng,
+});
+
 function Map({
   latitude,
   longtitude,
@@ -17,6 +31,7 @@ function Map({
   longtitude?: number;
   trackingID?: string;
 }): React.ReactElement {
+  // ... the rest of your component code stays exactly the same as before
   return (
     <section className="rounded-t-xl  border border-text-color bg-pramary-dark-blue w-full h-[60%]   relative">
       <div className="w-full h-full  flex flex-col max-h-full  rounded-xl">
@@ -32,6 +47,8 @@ function Map({
               zoom={13}
               scrollWheelZoom={false}
               style={{ width: "100%", height: "100%" }}
+              // FIX 2: Added maxZoom container expansion to support clean Google zooming limits
+              maxZoom={21}
             >
               {/* LayersControl lets you toggle between Google Maps and OpenStreetMap */}
               <LayersControl position="topright">
@@ -42,10 +59,10 @@ function Map({
                 >
                   <TileLayer
                     attribution='&copy; <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer">Google Maps</a>'
-                    // FIX: Replaced the broken pattern with the fully formed Google structure
                     url="https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
                     subdomains={["mt0", "mt1", "mt2", "mt3"]}
-                    maxZoom={20}
+                    maxZoom={21}
+                    maxNativeZoom={20}
                   />
                 </LayersControl.BaseLayer>
 
@@ -53,8 +70,9 @@ function Map({
                 <LayersControl.BaseLayer name="OpenStreetMap">
                   <TileLayer
                     attribution='&copy; <a href="https://openstreetmap.org" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors'
-                    // FIX: Replaced the broken pattern with the official OSM URL structure
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    maxZoom={21}
+                    maxNativeZoom={19}
                   />
                 </LayersControl.BaseLayer>
               </LayersControl>
@@ -66,7 +84,11 @@ function Map({
           ) : (
             <span className="flex h-full justify-center items-center">
               <div className="w-37.5 ">
-                <img className="w-full h-full" src={gpsLoading}></img>
+                <img
+                  className="w-full h-full"
+                  src={gpsLoading}
+                  alt="Loading..."
+                ></img>
               </div>
             </span>
           )}

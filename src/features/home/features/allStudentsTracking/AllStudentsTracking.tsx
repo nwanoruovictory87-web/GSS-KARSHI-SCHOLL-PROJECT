@@ -12,6 +12,19 @@ import { SocketApi } from "../../../../storage/Socket";
 import LoadingMap from "/assets/PlanetWorldPreloader.gif";
 //import OfflineTileLayer from "./OfflineTileLayer";
 import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+// 1. Import the actual image files from your installed leaflet package
+import markerIconPng from "leaflet/dist/images/marker-icon.png";
+import markerIconRetinaPng from "leaflet/dist/images/marker-icon-2x.png";
+import markerShadowPng from "leaflet/dist/images/marker-shadow.png";
+
+// 2. Safely apply them to Leaflet's defaults
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconUrl: markerIconPng,
+  iconRetinaUrl: markerIconRetinaPng,
+  shadowUrl: markerShadowPng,
+});
 interface GpsPosition {
   latitude: number;
   longitude: number;
