@@ -5,7 +5,7 @@ function WatchInfo({
 }: {
   batteryPercent: string;
   watchTime: string;
-  watchDate: Date;
+  watchDate: string;
 }): React.ReactElement {
   return (
     <section className="w-[50%] flex flex-col border border-text-color h-full bg-pramary-dark-blue rounded-xl">
@@ -36,20 +36,27 @@ function WatchInfo({
             </span>
           </div>
           {/**left */}
-          <div className="absolute left-0 top-0 mt-[30%] -ml-10">
+          <div className="absolute left-0 top-0 mt-[30%] -ml-13">
             <span className="flex flex-col items-center  text-text-color">
               <i className="fa fa-calendar-check text-[20px] "></i>
               <h5 className=" font-sans text-text-color font-semibold text-[16px]">
-                {watchDate && watchDate.toISOString()}
+                {watchDate}
               </h5>
             </span>
           </div>
           {/**right */}
-          <div className="absolute right-0 top-0 mt-[30%] -mr-10">
+          <div className="absolute right-0 top-0 mt-[30%] -mr-13">
             <span className="flex flex-col items-center  text-text-color">
               <i className="fa fa-calendar-check text-[20px] "></i>
               <h5 className=" font-sans text-text-color font-semibold text-[16px]">
-                08/20/26
+                {new Date().getDay() >= 10
+                  ? new Date().getDay()
+                  : `0${new Date().getDay()}`}
+                /
+                {new Date().getMonth() + 1 >= 10
+                  ? new Date().getMonth() + 1
+                  : `0${new Date().getMonth() + 1}`}
+                /{new Date().getFullYear()}
               </h5>
             </span>
           </div>

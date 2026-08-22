@@ -33,7 +33,7 @@ function DayOrBoadingOption({
     if (!dayRef.current || !bordingRef.current || !readOnly) return;
     if (day) {
       dayRef.current.checked = true;
-    } else {
+    } else if (bording) {
       bordingRef.current.checked = true;
     }
   }, []);
