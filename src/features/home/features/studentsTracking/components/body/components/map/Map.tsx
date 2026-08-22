@@ -58,13 +58,10 @@ function Map({
                   />
                 </LayersControl.BaseLayer>
               </LayersControl>
-
-              {/* Admin Marker */}
-              <Marker position={[latitude, longtitude]}>
-                <Popup>Admin </Popup>
-              </Marker>
-
               {/* Student Markers */}
+              <Marker position={[latitude, longtitude]}>
+                <Popup>{trackingID}</Popup>
+              </Marker>
             </MapContainer>
           ) : (
             <span className="flex h-full justify-center items-center">
