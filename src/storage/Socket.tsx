@@ -39,9 +39,9 @@ interface ImportantAlertsData {
   trackingState: number;
 }
 interface AlertsCountsData {
-  panicCount: number | null;
-  warningCount: number | null;
-  stableCount: number | null;
+  panicCount: number;
+  warningCount: number;
+  stableCount: number;
 }
 interface StudentsDailyGraphData {
   total: number;
@@ -63,7 +63,7 @@ interface OverviewData {
 interface ListenEvents {
   "all-students-location": (list: GpsPosition[] | []) => void;
   "all-students-alert": (alertsRecord: TrackingData[] | []) => void;
-  "get-overview-data": (list: OverviewData[] | []) => void;
+  "send-overview-data": (list: OverviewData) => void;
 }
 interface EmitEvents {
   "get-students-location": () => void;

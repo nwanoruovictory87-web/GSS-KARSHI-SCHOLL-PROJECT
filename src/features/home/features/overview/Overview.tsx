@@ -1,17 +1,17 @@
 import StudentsHiglights from "./components/StudentsHiglights";
 import BodyContent from "./components/bodyConetent/BodyContent";
 import { SocketApi } from "../../../../storage/Socket";
-//import { GetGpsLocation } from "../../shared/Gps";
-import { useState, useEffect } from "react";
+import { StudentsRecordStorage } from "../../../../storage/StudentsRecordStorage";
+import { useEffect } from "react";
 interface ImportantAlertsData {
   trackingID: string;
   watchTime: string;
   trackingState: number;
 }
 interface AlertsCountsData {
-  panicCount: number | null;
-  warningCount: number | null;
-  stableCount: number | null;
+  panicCount: number;
+  warningCount: number;
+  stableCount: number;
 }
 interface StudentsDailyGraphData {
   total: number;
@@ -31,30 +31,44 @@ interface Data {
   };
 }
 function Overview() {
-  const [overviewData, setOverviewData] = useState<Data>({
-    alertsCountData: {
-      panicCount: null,
-      warningCount: null,
-      stableCount: null,
-    },
-    importantAlertsData: [],
-    studentsDailyGraphData: {
-      total: 0,
-      resumed: 0,
-      active: 0,
-      inActive: 0,
-    },
-    studentsHiglightsData: {
-      total: 0,
-      resumed: 0,
-      active: 0,
-      inActive: 0,
-    },
-  });
-  //const socketInstance = SocketApi();
+  const socketInstance = SocketApi();
+  const studentsData = StudentsRecordStorage();
+  const { socket } = socketInstance;
+  const { overviewData, setOverviewData } = studentsData;
+  if (!overviewData) return;
+  //send requst overview ping
+  useEffect(() => {
+    if (!socket) return;
+    const requstDataTimer = setInterval(() => {
+      socket.emit("get-overview-data");
+    }, 30000); // every 30s
+    socket.emit("get-overview-data");
+    //console.log("test");
+    //
+    return () => {
+      clearInterval(requstDataTimer);
+    };
+  }, [socket]);
+  //listen on data responds
+  useEffect(() => {
+    if (!socket) return;
+    const overviewDataFunc = (data: Data) => {
+      setOverviewData(data);
+    };
+    socket.on("send-overview-data", overviewDataFunc);
+    //
+    return () => {
+      socket.off("send-overview-data", overviewDataFunc);
+    };
+  }, [socket]);
   return (
     <div className="w-full h-full overflow-y-auto component-spacing flex flex-col gap-7  relative ">
-      <StudentsHiglights />
+      <StudentsHiglights
+        total={overviewData.studentsHiglightsData.total}
+        resumed={overviewData.studentsHiglightsData.resumed}
+        active={overviewData.studentsHiglightsData.active}
+        inActive={overviewData.studentsHiglightsData.inActive}
+      />
       <BodyContent bodyContentData={overviewData} />
     </div>
   );

@@ -1,5 +1,15 @@
 import groupAImg from "/assets/student.jpeg";
-function StudentsHiglights(): React.ReactElement {
+function StudentsHiglights({
+  total,
+  resumed,
+  active,
+  inActive,
+}: {
+  total: number;
+  resumed: number;
+  active: number;
+  inActive: number;
+}): React.ReactElement {
   return (
     <article className="w-full  h-fit  grid  grid-cols-4 gap-10">
       <section className="w-full min-w-50 h-fit bg-pramary-dark-blue rounded-xl flex flex-col gap-2 component-spacing ">
@@ -12,10 +22,7 @@ function StudentsHiglights(): React.ReactElement {
           </span>
           <div className="flex flex-col ">
             <h5 className="text-text-color font-extrabold min20Max24px line-clamp-1">
-              3,000
-            </h5>
-            <h5 className="text-text-color -mt-1">
-              Total: <strong className="text-green-600">100%</strong>
+              {total}
             </h5>
           </div>
         </div>
@@ -30,10 +37,7 @@ function StudentsHiglights(): React.ReactElement {
           </span>
           <div className="flex flex-col ">
             <h5 className="text-text-color font-extrabold min20Max24px line-clamp-1">
-              2,650
-            </h5>
-            <h5 className="text-text-color -mt-1">
-              Total: <strong className="text-green-600">82%</strong>
+              {resumed}
             </h5>
           </div>
         </div>
@@ -48,10 +52,7 @@ function StudentsHiglights(): React.ReactElement {
           </span>
           <div className="flex flex-col ">
             <h5 className="text-text-color font-extrabold min20Max24px line-clamp-1">
-              2,342
-            </h5>
-            <h5 className="text-text-color -mt-1">
-              Total: <strong className="text-green-600">60%</strong>
+              {active}
             </h5>
           </div>
         </div>
@@ -66,10 +67,7 @@ function StudentsHiglights(): React.ReactElement {
           </span>
           <div className="flex flex-col ">
             <h5 className="text-text-color font-extrabold min20Max24px line-clamp-1">
-              348
-            </h5>
-            <h5 className="text-text-color -mt-1">
-              Total: <strong className="text-red-600">20%</strong>
+              {inActive}
             </h5>
           </div>
         </div>
