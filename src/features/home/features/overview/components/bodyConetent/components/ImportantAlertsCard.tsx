@@ -6,7 +6,6 @@ function ImportantAlertsCard({
   trackingID: string;
   watchTime: string;
   trackingState: number;
-  lastTransmistedDate: string;
 }): React.ReactElement {
   return (
     <div className="w-full h-12 text-text-color  grid grid-cols-[55%_15%_15%_15%] ">

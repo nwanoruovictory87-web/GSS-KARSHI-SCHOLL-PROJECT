@@ -1,7 +1,32 @@
 import StudentsLineGraph from "./components/StudentsLineGraph";
 import AlertsCounts from "./components/AlertsCounts";
 import ImportantAlerts from "./components/ImportantAlerts";
-function BodyContent() {
+interface ImportantAlertsData {
+  trackingID: string;
+  watchTime: string;
+  trackingState: number;
+}
+interface AlertsCountsData {
+  panicCount: number | null;
+  warningCount: number | null;
+  stableCount: number | null;
+}
+interface StudentsDailyGraphData {
+  total: number;
+  resumed: number;
+  active: number;
+  inActive: number;
+}
+interface BodyContentData {
+  alertsCountData: AlertsCountsData;
+  importantAlertsData: ImportantAlertsData[] | [];
+  studentsDailyGraphData: StudentsDailyGraphData;
+}
+function BodyContent({
+  bodyContentData,
+}: {
+  bodyContentData: BodyContentData;
+}) {
   return (
     <div className="w-full h-full flex mb-15 ">
       <article className="w-[60%] min-h-125 flex flex-col bg-pramary-dark-blue rounded-xl mr-auto ">
@@ -13,8 +38,13 @@ function BodyContent() {
           </span>
         </div>
         <section className="w-full h-full  flex justify-center items-center p-2 text-text-color">
-          {!true ? (
-            <StudentsLineGraph total={0} />
+          {bodyContentData.studentsDailyGraphData.total > 0 ? (
+            <StudentsLineGraph
+              total={bodyContentData.studentsDailyGraphData.total}
+              resumed={bodyContentData.studentsDailyGraphData.resumed}
+              active={bodyContentData.studentsDailyGraphData.active}
+              inActive={bodyContentData.studentsDailyGraphData.inActive}
+            />
           ) : (
             <div className="w-[80%] h-[80%] flex flex-col items-center gap-2">
               <div className="w-fit flex gap-5">
@@ -29,8 +59,12 @@ function BodyContent() {
         </section>
       </article>
       <article className="w-[38%] h-full flex flex-col  ml-auto">
-        <AlertsCounts />
-        <ImportantAlerts />
+        <AlertsCounts
+          panicCount={bodyContentData.alertsCountData.panicCount}
+          warningCount={bodyContentData.alertsCountData.warningCount}
+          stableCount={bodyContentData.alertsCountData.stableCount}
+        />
+        <ImportantAlerts list={bodyContentData.importantAlertsData} />
       </article>
     </div>
   );

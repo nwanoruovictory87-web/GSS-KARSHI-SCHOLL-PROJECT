@@ -1,7 +1,14 @@
 import ImportantAlertsCard from "./ImportantAlertsCard";
-
-ImportantAlertsCard;
-function ImportantAlerts(): React.ReactElement {
+interface ImportantAlertsData {
+  trackingID: string;
+  watchTime: string;
+  trackingState: number;
+}
+function ImportantAlerts({
+  list,
+}: {
+  list: ImportantAlertsData[] | [];
+}): React.ReactElement {
   return (
     <section className="w-full h-[58%]   flex flex-col gap-1 overflow-hidden bg-pramary-dark-blue rounded-xl mt-auto ">
       <div className="">
@@ -12,8 +19,17 @@ function ImportantAlerts(): React.ReactElement {
         </span>
       </div>
       <div className="w-full h-full pl-2 pr-2 grid grid-rows-5 ">
-        {!true ? (
-          <ImportantAlertsCard />
+        {list.length != 0 ? (
+          list.map((e) => {
+            return (
+              <ImportantAlertsCard
+                trackingID={e.trackingID}
+                watchTime={e.watchTime}
+                trackingState={e.trackingState}
+                key={e.trackingID}
+              />
+            );
+          })
         ) : (
           <>
             <div className="w-full h-12 text-text-color  grid grid-cols-[55%_15%_15%_15%] ">

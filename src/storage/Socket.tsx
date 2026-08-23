@@ -33,13 +33,42 @@ interface TrackingData {
     lastThreeKnownLocation: any[];
   };
 }
+interface ImportantAlertsData {
+  trackingID: string;
+  watchTime: string;
+  trackingState: number;
+}
+interface AlertsCountsData {
+  panicCount: number | null;
+  warningCount: number | null;
+  stableCount: number | null;
+}
+interface StudentsDailyGraphData {
+  total: number;
+  resumed: number;
+  active: number;
+  inActive: number;
+}
+interface OverviewData {
+  alertsCountData: AlertsCountsData;
+  importantAlertsData: ImportantAlertsData[] | [];
+  studentsDailyGraphData: StudentsDailyGraphData;
+  studentsHiglightsData: {
+    total: number;
+    resumed: number;
+    active: number;
+    inActive: number;
+  };
+}
 interface ListenEvents {
   "all-students-location": (list: GpsPosition[] | []) => void;
   "all-students-alert": (alertsRecord: TrackingData[] | []) => void;
+  "get-overview-data": (list: OverviewData[] | []) => void;
 }
 interface EmitEvents {
   "get-students-location": () => void;
   "get-students-alert": () => void;
+  "get-overview-data": () => void;
 }
 type AppSocket = Socket<ListenEvents, EmitEvents>;
 interface SocketInstanceApi {
