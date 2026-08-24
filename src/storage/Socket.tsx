@@ -69,6 +69,7 @@ interface EmitEvents {
   "get-students-location": () => void;
   "get-students-alert": () => void;
   "get-overview-data": () => void;
+  "get-tracking-id-admin": (trackingID: string) => void;
 }
 type AppSocket = Socket<ListenEvents, EmitEvents>;
 interface SocketInstanceApi {

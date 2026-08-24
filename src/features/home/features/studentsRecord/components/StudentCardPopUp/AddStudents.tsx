@@ -7,6 +7,7 @@ import StudentInfo from "./components/StudentInfo";
 import DayOrBoadingOption from "./components/DayOrBoadingOption";
 import LoadingAnimation from "../../../../shared/LoadingAnimation";
 import { StudentsRecordStorage } from "../../../../../../storage/StudentsRecordStorage";
+import { SocketApi } from "../../../../../../storage/Socket";
 interface StudentsInfo {
   firstName: string;
   middleName: string;
@@ -38,6 +39,8 @@ function AddStudents({
   control: () => void;
   readOnly: number;
 }): React.ReactElement {
+  const socketApi = SocketApi();
+  const { socket } = socketApi;
   const studentsRecord = StudentsRecordStorage();
   const { setRecords } = studentsRecord;
   const [validateInput, setValidateInput] = useState<number>(0);
@@ -88,6 +91,9 @@ function AddStudents({
           } = responds;
           alert(res.message);
           setLoadingAnimation(false);
+          if (socket) {
+            socket.emit("get-tracking-id-admin", trackingID);
+          }
           control();
           setRecords((prevRecords) => {
             const data = {

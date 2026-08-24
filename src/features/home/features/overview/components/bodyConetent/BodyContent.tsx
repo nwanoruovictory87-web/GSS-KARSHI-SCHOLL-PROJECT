@@ -7,9 +7,9 @@ interface ImportantAlertsData {
   trackingState: number;
 }
 interface AlertsCountsData {
-  panicCount: number | null;
-  warningCount: number | null;
-  stableCount: number | null;
+  panicCount: number;
+  warningCount: number;
+  stableCount: number;
 }
 interface StudentsDailyGraphData {
   total: number;
