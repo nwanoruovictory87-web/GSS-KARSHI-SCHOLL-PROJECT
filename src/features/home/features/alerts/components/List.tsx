@@ -39,7 +39,7 @@ function List() {
     //call send getAlertList every 30s
     const getAlertListTimer = setInterval(() => {
       socket.emit("get-students-alert");
-    }, 30000); // every 30s
+    }, 10000); // every 10s
     socket.emit("get-students-alert");
     //clean up
     return () => {

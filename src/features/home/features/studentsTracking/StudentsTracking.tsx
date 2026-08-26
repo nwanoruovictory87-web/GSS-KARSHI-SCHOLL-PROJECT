@@ -66,7 +66,7 @@ function StudentsTracking(): React.ReactElement {
     }
   }, []);
   return (
-    <div className="w-full h-150  overflow-y-auto  component-spacing relative overflow-hidden">
+    <div className="w-full min-h-150 h-full  overflow-y-auto  component-spacing relative overflow-hidden">
       <Filter
         searchDB={getTrackingData}
         input={trackingIDInput}
