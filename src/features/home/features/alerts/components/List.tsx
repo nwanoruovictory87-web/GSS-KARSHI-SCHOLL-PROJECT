@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import StudentsAlertInfo from "./StudentsAlertInfo";
 import { SocketApi } from "../../../../../storage/Socket";
+import alertAlerm from "/assets/alertAlerm.mp3";
 interface TrackingData {
   firstName: string;
   middleName: string;
@@ -33,13 +34,22 @@ function List() {
   const socketApi = SocketApi();
   const { socket } = socketApi;
   const [alertList, setAlertList] = useState<TrackingData[] | []>([]);
+  useEffect(() => {
+    const alerm = new Audio(alertAlerm);
+    for (let i = 0; i < alertList.length; i++) {
+      if (alertList[i].trackingState === 3) {
+        alerm.play();
+        return;
+      }
+    }
+  }, [alertList]);
   //send get alertList requst ping
   useEffect(() => {
     if (!socket) return;
     //call send getAlertList every 30s
     const getAlertListTimer = setInterval(() => {
       socket.emit("get-students-alert");
-    }, 10000); // every 10s
+    }, 3000); // every 10s
     socket.emit("get-students-alert");
     //clean up
     return () => {
