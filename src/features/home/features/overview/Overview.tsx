@@ -41,7 +41,7 @@ function Overview() {
     if (!socket) return;
     const requstDataTimer = setInterval(() => {
       socket.emit("get-overview-data");
-    }, 30000); // every 30s
+    }, 10000); // every 10s
     socket.emit("get-overview-data");
     //console.log("test");
     //
