@@ -177,6 +177,19 @@ function StudentInfo(prop: ControlData): React.ReactElement {
     fileInputRef.current.click();
   }
   //
+  function formatDateOfBirth(value: string) {
+    if (value > dateOfBirth) {
+      if (value.length === 2) {
+        setDateOfBirth(`${value}/`);
+        return;
+      } else if (value.length === 5) {
+        setDateOfBirth(`${value}/`);
+        return;
+      }
+    }
+    if (value.length > 10) return;
+    setDateOfBirth(value);
+  }
   return (
     <>
       {/**profile pic */}
@@ -306,7 +319,7 @@ function StudentInfo(prop: ControlData): React.ReactElement {
               value={dateOfBirth}
               onChange={(e) => {
                 if (prop.readonly === 1) return;
-                setDateOfBirth(e.target.value);
+                formatDateOfBirth(e.target.value);
               }}
             ></input>
           </span>
