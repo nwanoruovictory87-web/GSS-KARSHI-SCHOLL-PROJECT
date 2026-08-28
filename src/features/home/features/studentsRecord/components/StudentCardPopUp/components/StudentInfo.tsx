@@ -9,12 +9,15 @@ interface StudentsInfo {
   gender: string;
   house: string;
   year: string;
+  image: string | null;
 }
 interface ControlData {
   readonly: number;
   studentInfo?: StudentsInfo;
   validateInput: number;
   validateInputFunc: (result: number) => void;
+  profilePicture: string | null;
+  setFileState: React.Dispatch<React.SetStateAction<Blob | undefined>>;
   saveData: boolean;
   validateSaveInputFunc: (
     result: number,
@@ -30,6 +33,16 @@ function StudentInfo(prop: ControlData): React.ReactElement {
   const [gender, setGender] = useState<string>("");
   const [house, setHouse] = useState<string>("");
   const [year, setYear] = useState<string>("");
+  const [profileImg, setProfileImg] = useState<string | null>(
+    prop.profilePicture,
+  );
+  //
+  useEffect(() => {
+    if (!prop.profilePicture) return;
+    (() => {
+      setProfileImg(prop.profilePicture);
+    })();
+  }, [prop.profilePicture]);
   //
   const firstNameRef = useRef<HTMLSpanElement | null>(null);
   const middleNameRef = useRef<HTMLSpanElement | null>(null);
@@ -39,6 +52,7 @@ function StudentInfo(prop: ControlData): React.ReactElement {
   const genderRef = useRef<HTMLSpanElement | null>(null);
   const houseRef = useRef<HTMLSpanElement | null>(null);
   const yearRef = useRef<HTMLSpanElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   //
   function activiteEmptyUXFallback(
     ref: React.RefObject<HTMLSpanElement | null>,
@@ -134,6 +148,7 @@ function StudentInfo(prop: ControlData): React.ReactElement {
         gender: gender,
         house: house,
         year: year,
+        image: profileImg,
       });
     } else {
       prop.validateSaveInputFunc(2, null);
@@ -156,6 +171,14 @@ function StudentInfo(prop: ControlData): React.ReactElement {
     }
     updateInputSection();
   }, []);
+  //
+  function uploadFile() {
+    if (!fileInputRef.current) return;
+    fileInputRef.current.click();
+  }
+  //
+
+  console.log(profileImg);
   return (
     <>
       {/**profile pic */}
@@ -164,14 +187,29 @@ function StudentInfo(prop: ControlData): React.ReactElement {
           <span className="w-25 h-25 block  ">
             <img
               className="w-full h-full rounded-full"
-              src={noProfileImg}
+              src={profileImg ? profileImg : noProfileImg}
             ></img>
           </span>
-          <span className="w-fit flex">
-            <h5 className="text-[#4646d1] text-[16px] font-semibold font-sans hover:text-[#9b9beb] transition-all pointer">
-              Upload Student picture
-            </h5>
-          </span>
+          {prop.readonly != 1 && (
+            <span className="w-fit flex">
+              <h5
+                className="text-[#4646d1] text-[16px] font-semibold font-sans hover:text-[#9b9beb] transition-all pointer"
+                onClick={uploadFile}
+              >
+                Upload Student picture
+              </h5>
+              <input
+                className="w-0"
+                onChange={(e) => {
+                  if (e.target.files) {
+                    prop.setFileState(e.target.files[0]);
+                  }
+                }}
+                type="file"
+                ref={fileInputRef}
+              ></input>
+            </span>
+          )}
         </div>
       </div>
       {/** */}
@@ -209,7 +247,7 @@ function StudentInfo(prop: ControlData): React.ReactElement {
           >
             <input
               className="w-full h-9 pl-2 text-pramary-dark-blue placeholder:text-gray-400 placeholder:font-semibold"
-              placeholder=" Chibuzo...."
+              placeholder={middleName.length > 2 ? "" : "Chibuzo...."}
               value={middleName}
               onChange={(e) => {
                 if (prop.readonly === 1) return;

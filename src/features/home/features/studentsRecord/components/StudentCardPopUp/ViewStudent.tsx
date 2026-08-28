@@ -13,6 +13,7 @@ function ViewStudent({
   gender,
   house,
   year,
+  image,
 }: {
   control: () => void;
   day: boolean;
@@ -26,6 +27,7 @@ function ViewStudent({
   gender: string;
   house: string;
   year: string;
+  image: string | null;
 }): React.ReactElement {
   return (
     <article className="w-full h-screen transition-all bg-[#63606027] rounded-xl component-spacing absolute top-0 z-10 ">
@@ -47,6 +49,8 @@ function ViewStudent({
                 validateInputFunc={() => {}}
                 saveData={false}
                 validateSaveInputFunc={() => {}}
+                setFileState={() => {}}
+                profilePicture={image}
                 studentInfo={{
                   firstName,
                   middleName,
@@ -56,6 +60,7 @@ function ViewStudent({
                   gender,
                   house,
                   year,
+                  image,
                 }}
               />
               {/**day or bording */}

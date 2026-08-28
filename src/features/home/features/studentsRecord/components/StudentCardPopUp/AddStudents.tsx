@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   getNewTrackingId,
   createNewStudentsData,
@@ -17,6 +17,7 @@ interface StudentsInfo {
   gender: string;
   house: string;
   year: string;
+  image: string | null;
 }
 interface StudentsDataInfo {
   firstName: string;
@@ -30,7 +31,7 @@ interface StudentsDataInfo {
   dayStudent: number;
   bordingStudent: number;
   trackingID: string;
-  image: null;
+  image: Blob | null;
 }
 function AddStudents({
   control,
@@ -53,6 +54,17 @@ function AddStudents({
   const [day, setDay] = useState<boolean>(false);
   const [bording, setBording] = useState<boolean>(false);
   const [loadingAnimation, setLoadingAnimation] = useState<boolean>(false);
+  const [fileState, setFileState] = useState<Blob | undefined>(undefined);
+  const [profileImg, setProfileImg] = useState<string | null>(null);
+  //
+  useEffect(() => {
+    if (!fileState) return;
+    const image = URL.createObjectURL(fileState);
+    (() => {
+      setProfileImg(image);
+    })();
+  }, [fileState]);
+  //console.log(profileImg);
   //
   function getTrackingId(inputState: number): void {
     if (inputState == 0) {
@@ -108,7 +120,7 @@ function AddStudents({
               dayStudent: studentInfo.dayStudent,
               bordingStudent: studentInfo.bordingStudent,
               trackingID: studentInfo.trackingID,
-              image: studentInfo.image,
+              image: profileImg,
               studentYear: studentInfo.year,
               createdAt: new Date(),
               __v: 0,
@@ -145,9 +157,10 @@ function AddStudents({
       trackingID: trackingID,
       dayStudent: day ? 1 : 0,
       bordingStudent: bording ? 1 : 0,
-      image: null,
+      image: fileState ? fileState : null,
     });
   }
+  console.log(fileState);
   return (
     <article className="w-full h-screen transition-all bg-[#63606027] rounded-xl component-spacing absolute top-0 z-10 ">
       <div className="w-full h-full relative">
@@ -168,6 +181,8 @@ function AddStudents({
                 validateInputFunc={getTrackingId}
                 saveData={isTrackingID}
                 validateSaveInputFunc={validateSaveInputFunc}
+                setFileState={setFileState}
+                profilePicture={profileImg}
               />
               {/**day or bording */}
               <DayOrBoadingOption

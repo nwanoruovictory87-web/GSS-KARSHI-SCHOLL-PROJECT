@@ -60,7 +60,7 @@ function StudentsInfo({
         <span className="flex gap-4 pl-2 p-1 pr-2  items-center font-medium border-r border-body-color ">
           <span className="min-w-13 min-h-13 max-w-13 max-h-13 rounded-full ">
             <img
-              className="w-full h-full rounded-full"
+              className="min-w-13 min-h-13 max-w-13 max-h-13 rounded-full"
               src={image ? image : noProfileImg}
             ></img>
           </span>
@@ -122,6 +122,7 @@ function StudentsInfo({
           gender={gender}
           house={house}
           year={year}
+          image={image}
         />
       )}
       {isLoading && <LoadingAnimation />}

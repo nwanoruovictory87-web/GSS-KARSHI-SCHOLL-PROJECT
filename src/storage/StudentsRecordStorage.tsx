@@ -11,7 +11,7 @@ interface StudentsData {
   dayStudent: number;
   bordingStudent: number;
   trackingID: string;
-  image: null;
+  image: string | null;
   studentYear: string;
   createdAt: Date;
   __v: number;

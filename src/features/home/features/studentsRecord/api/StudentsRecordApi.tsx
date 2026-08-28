@@ -9,7 +9,7 @@ interface StudentsDataInfo {
   year: string;
   dayStudent: number;
   bordingStudent: number;
-  image: null;
+  image: Blob | null;
 }
 interface StudentsData {
   _id: string;
@@ -24,7 +24,7 @@ interface StudentsData {
   dayStudent: number;
   bordingStudent: number;
   trackingID: string;
-  image: null;
+  image: string | null;
   studentYear: string;
   createdAt: Date;
   __v: number;
@@ -70,13 +70,15 @@ export function createNewStudentsData({
   message: string;
   ok: boolean;
 }> {
+  const formData = new FormData();
+  if (studentData.image) {
+    formData.append("image", studentData.image);
+  }
+  formData.append("students-info", JSON.stringify(studentData));
   return new Promise((resolve, reject) => {
     const postStudentsData = fetch(`${server}/students/add/new/students`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(studentData),
+      body: formData,
     });
     postStudentsData
       .then((responds) => {
