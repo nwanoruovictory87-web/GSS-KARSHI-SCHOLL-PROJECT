@@ -9,7 +9,6 @@ function LeftNavigationBar(): React.ReactElement {
   const studentsRef = useRef<HTMLDivElement | null>(null);
   const trackingRef = useRef<HTMLDivElement | null>(null);
   const allTrackingRef = useRef<HTMLDivElement | null>(null);
-  const devModeRef = useRef<HTMLDivElement | null>(null);
   //
   function removeButtonActive(
     ref: React.RefObject<HTMLDivElement | null>,
@@ -34,13 +33,11 @@ function LeftNavigationBar(): React.ReactElement {
       !alertRef.current ||
       !studentsRef.current ||
       !trackingRef.current ||
-      !allTrackingRef.current ||
-      !devModeRef.current
+      !allTrackingRef.current
     )
       return;
     switch (sections) {
       case "overview":
-        removeButtonActive(devModeRef);
         removeButtonActive(allTrackingRef);
         removeButtonActive(trackingRef);
         removeButtonActive(studentsRef);
@@ -50,7 +47,6 @@ function LeftNavigationBar(): React.ReactElement {
         setButtonActive(overviewRef);
         break;
       case "students/alerts":
-        removeButtonActive(devModeRef);
         removeButtonActive(allTrackingRef);
         removeButtonActive(trackingRef);
         removeButtonActive(studentsRef);
@@ -60,7 +56,6 @@ function LeftNavigationBar(): React.ReactElement {
         setButtonActive(alertRef);
         break;
       case "students/info":
-        removeButtonActive(devModeRef);
         removeButtonActive(allTrackingRef);
         removeButtonActive(trackingRef);
         removeButtonActive(alertRef);
@@ -70,7 +65,6 @@ function LeftNavigationBar(): React.ReactElement {
         setButtonActive(studentsRef);
         break;
       case "students/tracking":
-        removeButtonActive(devModeRef);
         removeButtonActive(allTrackingRef);
         removeButtonActive(studentsRef);
         removeButtonActive(alertRef);
@@ -80,7 +74,6 @@ function LeftNavigationBar(): React.ReactElement {
         setButtonActive(trackingRef);
         break;
       case "all/students/tracking":
-        removeButtonActive(devModeRef);
         removeButtonActive(trackingRef);
         removeButtonActive(studentsRef);
         removeButtonActive(alertRef);
@@ -89,6 +82,7 @@ function LeftNavigationBar(): React.ReactElement {
         removeButtonActive(allTrackingRef);
         setButtonActive(allTrackingRef);
         break;
+      /*
       case "developement/mode":
         removeButtonActive(allTrackingRef);
         removeButtonActive(trackingRef);
@@ -96,9 +90,9 @@ function LeftNavigationBar(): React.ReactElement {
         removeButtonActive(alertRef);
         removeButtonActive(overviewRef);
         //
-        removeButtonActive(devModeRef);
         setButtonActive(devModeRef);
         break;
+     */
       default:
         toOverviewPage();
         break;
