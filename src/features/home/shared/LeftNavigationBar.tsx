@@ -139,12 +139,14 @@ function LeftNavigationBar(): React.ReactElement {
     });
   }
   //
+  /*
   function toDevPage(): void {
     const page = "developement/mode";
     setSearchParams({
       section: `${page}`,
     });
   }
+  */
   return (
     <nav className="min-w-47.25 w-[30%] max-w-60 h-full bg-pramary-dark-blue flex flex-col component-spacing gap-5">
       <section
@@ -186,14 +188,6 @@ function LeftNavigationBar(): React.ReactElement {
       >
         <i className="fa fa-globe"></i>
         <h5 className="text-[20px]">All Tracking</h5>
-      </section>
-      <section
-        className="pointer flex items-center  gap-2 transition-all bg-transparent rounded-lg p-2 text-gray-400 font-medium text-[24px]  pl-4"
-        onClick={toDevPage}
-        ref={devModeRef}
-      >
-        <i className="fa fa-gears"></i>
-        <h5 className="text-[20px]">Dev Mode</h5>
       </section>
       {/** */}
       <div className="w-full h-40 flex justify-center  mt-auto mb-20">

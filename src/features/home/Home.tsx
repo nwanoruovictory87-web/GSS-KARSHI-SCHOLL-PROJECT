@@ -74,6 +74,7 @@ function Home(): React.ReactElement {
         //
         setRenderAllTracking(true);
         break;
+      /*
       case "developement/mode":
         setRenderAlerts(false);
         setRenderTracking(false);
@@ -83,6 +84,7 @@ function Home(): React.ReactElement {
         //
         setRenderDevMode(true);
         break;
+      */
       default:
         break;
     }
