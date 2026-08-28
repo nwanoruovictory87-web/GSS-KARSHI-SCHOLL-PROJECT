@@ -59,6 +59,8 @@ function AddStudents({
   //
   useEffect(() => {
     if (!fileState) return;
+    if (fileState.type.split("/")[0] != "image")
+      return alert("profile picture must be an image");
     const image = URL.createObjectURL(fileState);
     (() => {
       setProfileImg(image);
@@ -160,7 +162,6 @@ function AddStudents({
       image: fileState ? fileState : null,
     });
   }
-  console.log(fileState);
   return (
     <article className="w-full h-screen transition-all bg-[#63606027] rounded-xl component-spacing absolute top-0 z-10 ">
       <div className="w-full h-full relative">

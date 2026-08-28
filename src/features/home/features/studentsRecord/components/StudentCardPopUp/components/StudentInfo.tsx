@@ -177,8 +177,6 @@ function StudentInfo(prop: ControlData): React.ReactElement {
     fileInputRef.current.click();
   }
   //
-
-  console.log(profileImg);
   return (
     <>
       {/**profile pic */}
