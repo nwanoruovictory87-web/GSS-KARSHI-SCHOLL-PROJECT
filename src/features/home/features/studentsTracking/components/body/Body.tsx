@@ -40,7 +40,7 @@ function Body({
   isLoading: boolean;
 }): React.ReactElement {
   return (
-    <article className="w-full min-h-142 h-full  flex gap-7 ">
+    <article className="w-full h-[600px]  flex gap-7 ">
       {trackingData ? (
         <StudentInfo
           firstName={trackingData.firstName}
