@@ -49,9 +49,9 @@ function WatchInfo({
             <span className="flex flex-col items-center  text-text-color">
               <i className="fa fa-calendar-check text-[20px] "></i>
               <h5 className=" font-sans text-text-color font-semibold text-[16px]">
-                {new Date().getDay() >= 10
-                  ? new Date().getDay()
-                  : `0${new Date().getDay()}`}
+                {new Date().getDate() >= 10
+                  ? new Date().getDate()
+                  : `0${new Date().getDate()}`}
                 /
                 {new Date().getMonth() + 1 >= 10
                   ? new Date().getMonth() + 1
