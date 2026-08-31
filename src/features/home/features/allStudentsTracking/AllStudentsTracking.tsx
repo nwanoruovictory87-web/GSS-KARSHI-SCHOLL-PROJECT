@@ -56,7 +56,7 @@ function AllStudentsTracking(): React.ReactElement {
     socket.emit("get-students-location");
     const requstLocationEvery5Second = setInterval(() => {
       socket.emit("get-students-location");
-    }, 5000); // requst all location every 5 seconds
+    }, 10000); // requst all location every 10 seconds
     //
     return () => {
       // clean up on component unmount
