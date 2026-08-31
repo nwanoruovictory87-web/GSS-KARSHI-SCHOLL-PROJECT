@@ -5,6 +5,7 @@ import AiOverview from "./components/aiOverview/AiOverview";
 import LStudentInfo from "./shared/loadingSections/studentinfo/StudentInfo";
 import LWacthInfo from "./shared/loadingSections/watchInfo/WatchInfo";
 import LAiOverview from "./shared/loadingSections/aiOverview/AiOverview";
+//
 interface TrackingData {
   firstName: string;
   middleName: string;
@@ -35,8 +36,10 @@ interface TrackingData {
 function Body({
   trackingData,
   isLoading,
+  aiOverview,
 }: {
   trackingData: TrackingData | null;
+  aiOverview: string | null;
   isLoading: boolean;
 }): React.ReactElement {
   return (
@@ -71,10 +74,10 @@ function Body({
           ) : (
             <LWacthInfo isLoading={isLoading} />
           )}
-          {trackingData ? (
-            <AiOverview />
+          {aiOverview ? (
+            <AiOverview aiOverview={aiOverview} />
           ) : (
-            <LAiOverview isLoading={isLoading} />
+            <LAiOverview isLoading={!aiOverview || isLoading ? true : false} />
           )}
         </article>
       </section>

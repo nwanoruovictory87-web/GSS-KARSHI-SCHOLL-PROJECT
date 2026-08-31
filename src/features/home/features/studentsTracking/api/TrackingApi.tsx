@@ -27,6 +27,19 @@ interface TrackingData {
     lastThreeKnownLocation: any[];
   };
 }
+//
+interface AiOverview {
+  fullName: string;
+  age: string;
+  gender: string;
+  schoolHouse: string;
+  watchBattery: string;
+  lat: number;
+  lng: number;
+  watchDate: string;
+  watchTime: string;
+  currentDate: string;
+}
 const server = import.meta.env.VITE_BACKEND_URL;
 export function getStudentWithIDTrackingData(
   trackingID: string,
@@ -51,6 +64,37 @@ export function getStudentWithIDTrackingData(
             } else {
               reject(data.message);
             }
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+//
+export function getAiOverview({
+  studentsTrackingData,
+}: {
+  studentsTrackingData: AiOverview;
+}): Promise<{ ok: boolean; message: string; text: string }> {
+  return new Promise((resolve, reject) => {
+    const requst = fetch(`${server}/tracking/student/tracking/aioverview`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(studentsTrackingData),
+    });
+    //
+    requst
+      .then((res) => {
+        res
+          .json()
+          .then((data) => {
+            resolve(data);
           })
           .catch((error) => {
             reject(error);
