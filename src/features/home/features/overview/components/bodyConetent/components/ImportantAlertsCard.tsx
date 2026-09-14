@@ -1,3 +1,5 @@
+import { StudentsRecordStorage } from "../../../../../../../storage/StudentsRecordStorage";
+import { useSearchParams } from "react-router-dom";
 function ImportantAlertsCard({
   trackingID,
   trackingState,
@@ -7,6 +9,21 @@ function ImportantAlertsCard({
   watchTime: string;
   trackingState: number;
 }): React.ReactElement {
+  const [_, setSearchParams] = useSearchParams();
+  const studentDataApi = StudentsRecordStorage();
+  const { setTrackingID } = studentDataApi;
+  //
+  function toTrackingPage(): void {
+    const page = "students/tracking";
+    setSearchParams({
+      section: `${page}`,
+    });
+  }
+  //
+  function trackStudent(): void {
+    setTrackingID(trackingID);
+    toTrackingPage();
+  }
   return (
     <div className="w-full h-12 text-text-color  grid grid-cols-[55%_15%_15%_15%] ">
       <span className="border-r border-body-color flex items-center">
@@ -27,7 +44,10 @@ function ImportantAlertsCard({
         <h5>{watchTime}</h5>
       </span>
       <span className=" flex items-center justify-center ">
-        <span className="flex items-center   text-black p-2 w-fit h-8 rounded-xl bg-[#4b4be9]">
+        <span
+          className="flex items-center   text-black p-2 w-fit h-8 rounded-xl bg-[#4b4be9] pointer"
+          onClick={trackStudent}
+        >
           <i className="fa fa-location"></i>
         </span>
       </span>
