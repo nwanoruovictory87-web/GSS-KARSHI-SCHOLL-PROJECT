@@ -1,4 +1,4 @@
-import guidanceImg from "/assets/Guidance.jpeg";
+import guidanceImg from "/assets/Guidance.png";
 function HouseMrOrMrsCard(): React.ReactElement {
   return (
     <>
@@ -9,11 +9,11 @@ function HouseMrOrMrsCard(): React.ReactElement {
         <div className="w-full mt-2 flex flex-col gap-1 ml-auto">
           <span className="min16Max18px h-6 overflow-hidden text-text-color flex gap-2">
             <h2 className="">FirstName:</h2>
-            <h2 className="line-clamp-1">Mr Yusuf</h2>
+            <h2 className="line-clamp-1">Mr Sardauna</h2>
           </span>
           <span className="min16Max18px h-6 overflow-hidden text-text-color flex gap-2">
             <h2 className="">LastName:</h2>
-            <h2 className="line-clamp-1">Bello</h2>
+            <h2 className="line-clamp-1">Mamudu</h2>
           </span>
           <span className="min16Max18px h-6 overflow-hidden text-text-color flex gap-2">
             <h2 className="">MiddleName:</h2>
@@ -29,13 +29,13 @@ function HouseMrOrMrsCard(): React.ReactElement {
           </span>
           <span className="min16Max18px h-6 overflow-hidden text-text-color flex gap-2">
             <h2 className="">Contact Info:</h2>
-            <h2 className="line-clamp-1">08066869429</h2>
+            <h2 className="line-clamp-1"> 07068233525</h2>
           </span>
         </div>
       </div>
       <span className="w-full mt-1 min16Max18px h-6 overflow-hidden text-text-color flex gap-2">
         <h2 className="">Email:</h2>
-        <h2 className="w-full  line-clamp-1">nwanoruovictory87@gmail.com</h2>
+        <h2 className="w-full  line-clamp-1">sardaunsmamudu01@gmail.com</h2>
       </span>
     </>
   );

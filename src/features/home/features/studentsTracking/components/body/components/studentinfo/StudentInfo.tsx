@@ -39,8 +39,8 @@ function StudentInfo({
       </div>
       {/**bording master info */}
       <span className="w-full h-7 bg-text-color  flex justify-center">
-        <h5 className="min16Max18px text-black font-medium">
-          House Master/Mistress info
+        <h5 className="min16Max18px text-black font-medium line-clamp-1">
+          Senior Boarding House Master
         </h5>
       </span>
       <div className="w-full h-[50%] flex flex-col component-spacing">
