@@ -4,6 +4,38 @@ A real-time safety and GPS tracking application built to protect students at Gov
 
 ---
 
+## Admin Board (The Board) Interface
+
+### 1. Student Creation & Registration
+
+This section is used to register new students into the system and view the list of currently registered individuals.
+
+![Student Creation Section](./images/01_student_creation.png)
+_Displays the student registration form and a data list showing the first 4 registered students._
+
+### 2. Live Alert & State Monitor
+
+This interface tracks the exact security status of the students in real-time, mapping them directly to their operational states.
+
+![Tracking States Section](./images/02_alert_states.png)
+_Displays the active tracking states (Unknown, Stable, Warning, Panic) for the 4 monitored students._
+
+### 3. Individual Student Tracking View
+
+Clicking on a specific student opens an in-depth profile modal or page containing comprehensive location metrics.
+
+![Individual Tracking View](./images/03_individual_tracking.png)
+_Displays a map pinpointing the selected student, the exact last time/date location data was fetched, alongside device diagnostics and full student profile info._
+
+### 4. Global Map Overview
+
+The main command center screen showing a bird's-eye view of the entire school safety ecosystem.
+
+![Global Tracking Map](./images/04_global_map.png)
+_A global map displaying the real-time locations of all active students alongside the security admin board's base location._
+
+---
+
 ## System Architecture
 
 The infrastructure is split into three core components communicating via a dual protocol setup: **HTTP** for static management data and **TCP Sockets** for real-time live data where every millisecond counts.
