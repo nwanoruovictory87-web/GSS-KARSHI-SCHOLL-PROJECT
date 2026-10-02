@@ -105,3 +105,9 @@ input:focus {
     color: rgb(21, 18, 54);
   }
 }
+.gray-text {
+  color: #99a1af;
+}
+.gray-text-light {
+  color: #f3f4f6;
+}
