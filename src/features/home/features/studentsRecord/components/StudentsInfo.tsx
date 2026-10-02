@@ -89,17 +89,17 @@ function StudentsInfo({
           </h5>
         </span>
         <span className="grid grid-cols-3 gap-1 pl-2 p-1 pr-2 text-text-color  items-center font-medium ">
-          <span className="p-2 pointer rounded-xs bg-blue-700 text-center">
+          <span className="p-2 pointer rounded-xs blue-color text-center">
             <i className="fa fa-pen"></i>
           </span>
           <span
-            className="p-2 pointer rounded-xs bg-green-700 text-center"
+            className="p-2 pointer rounded-xs green-colortext-center"
             onClick={() => setViewMode(true)}
           >
             <i className="fa fa-eye"></i>
           </span>
           <span
-            className="p-2 pointer rounded-xs bg-red-700 text-center"
+            className="p-2 pointer rounded-xs red-color text-center"
             onClick={() => deleteStudentData(trackingID)}
           >
             <i className="fa fa-trash"></i>
